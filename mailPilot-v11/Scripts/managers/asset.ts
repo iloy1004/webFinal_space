@@ -70,6 +70,38 @@
         }
     };
 
+    // SpriteSheet Data Object
+    var enemy03Data = {
+        "images": ["assets/images/enemyBot_03.png"],
+        "frames": [
+            [0, 0, 96, 129],
+            [0, 130, 96, 129],
+            [0, 260, 96, 129]
+        ],
+        "animations": {
+            "enemy03": {
+                frames: [0, 1, 2],
+                speed: 0.2
+            }
+        }
+    };
+
+    // SpriteSheet Data Object
+    var enemy04Data = {
+        "images": ["assets/images/enemyBot_04.png"],
+        "frames": [
+            [0, 0, 96, 127],
+            [0, 128, 96, 127],
+            [0, 256, 96, 127]
+        ],
+        "animations": {
+            "enemy04": {
+                frames: [0, 1, 2],
+                speed: 0.2
+            }
+        }
+    };
+
     // Asset Manager Class
     export class Assets {
         public static manifest;
@@ -78,6 +110,8 @@
         public static loader;
         public static atlas: createjs.SpriteSheet;
         public static shipAtlas: createjs.SpriteSheet;
+        public static enemy03: createjs.SpriteSheet;
+        public static enemy04: createjs.SpriteSheet;
 
         public static init() {
             createjs.Sound.initializeDefaultPlugins();
@@ -86,6 +120,8 @@
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.shipAtlas = new createjs.SpriteSheet(shipData);
+            this.enemy03 = new createjs.SpriteSheet(enemy03Data);
+            this.enemy04 = new createjs.SpriteSheet(enemy04Data);
         }
 
     }

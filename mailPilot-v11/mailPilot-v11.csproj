@@ -63,26 +63,12 @@
     <Content Include="assets\images\1shot.png" />
     <Content Include="assets\images\3shot.png" />
     <Content Include="assets\images\actor.png" />
-    <Content Include="assets\images\atlas.png" />
     <Content Include="assets\images\atlas1.png" />
-    <Content Include="assets\images\attackBird1.png" />
-    <Content Include="assets\images\attackBird2.png" />
     <Content Include="assets\images\background.png" />
     <Content Include="assets\images\enemyBot_03.png" />
     <Content Include="assets\images\enemyBot_04.png" />
     <Content Include="assets\images\ourShip.png" />
-    <Content Include="assets\images\sky.png" />
-    <Content Include="assets\images\bonus1.png" />
-    <Content Include="assets\images\bonus2.png" />
-    <Content Include="assets\images\cloud.png" />
-    <Content Include="assets\images\heart.png" />
-    <Content Include="assets\images\helpBird.png" />
-    <Content Include="assets\images\island.png" />
-    <Content Include="assets\images\kingBird.png" />
     <Content Include="assets\images\loading.gif" />
-    <Content Include="assets\images\plane.png" />
-    <Content Include="assets\images\sideplane.gif" />
-    <Content Include="assets\images\sky1.png" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

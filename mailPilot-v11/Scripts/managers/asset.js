@@ -66,6 +66,36 @@ var managers;
             }
         }
     };
+    // SpriteSheet Data Object
+    var enemy03Data = {
+        "images": ["assets/images/enemyBot_03.png"],
+        "frames": [
+            [0, 0, 96, 129],
+            [0, 130, 96, 129],
+            [0, 260, 96, 129]
+        ],
+        "animations": {
+            "enemy03": {
+                frames: [0, 1, 2],
+                speed: 0.2
+            }
+        }
+    };
+    // SpriteSheet Data Object
+    var enemy04Data = {
+        "images": ["assets/images/enemyBot_04.png"],
+        "frames": [
+            [0, 0, 96, 127],
+            [0, 128, 96, 127],
+            [0, 256, 96, 127]
+        ],
+        "animations": {
+            "enemy04": {
+                frames: [0, 1, 2],
+                speed: 0.2
+            }
+        }
+    };
     // Asset Manager Class
     var Assets = (function () {
         function Assets() {
@@ -77,6 +107,8 @@ var managers;
             this.loader.loadManifest(assetManifest);
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.shipAtlas = new createjs.SpriteSheet(shipData);
+            this.enemy03 = new createjs.SpriteSheet(enemy03Data);
+            this.enemy04 = new createjs.SpriteSheet(enemy04Data);
         };
         return Assets;
     })();
