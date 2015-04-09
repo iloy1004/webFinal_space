@@ -68,6 +68,8 @@
     <Content Include="assets\images\attackBird1.png" />
     <Content Include="assets\images\attackBird2.png" />
     <Content Include="assets\images\background.png" />
+    <Content Include="assets\images\enemyBot_03.png" />
+    <Content Include="assets\images\enemyBot_04.png" />
     <Content Include="assets\images\ourShip.png" />
     <Content Include="assets\images\sky.png" />
     <Content Include="assets\images\bonus1.png" />
