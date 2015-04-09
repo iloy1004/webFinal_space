@@ -1,0 +1,68 @@
+﻿<!--
+    Source file name : index.html
+    Author's name : Jihee Seo (300768856)
+    Last modified by : Jihee Seo (300768856)
+    Last modified day : Mar 20, 2014
+    Program description : 2D web game with canvas, html5, createJs. 
+    Revision history : 1.0 - Initial commit to add default (Mar 10, 2015)
+                       1.1 - create default functions (Mar 10)
+                       1.2 - Add bullets and instructions (Mar 16)
+                       1.3 - Add the HP rectangle (Mar 18)
+                       1.4 - Fixed buttons error
+                       1.5 - Completed every functions
+                       1.6 - Changed image for poo
+                       1.7 - Add sound effects
+                       1.8 - Add internal document
+                       1.9 - Fixed monsters' error
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Adventure Time</title>
+    <!-- CSS Section -->
+    <link href='http://fonts.googleapis.com/css?family=Maven+Pro:500,900,700' rel='stylesheet' type='text/css'>
+    <link href="css/normalize.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+</head>
+<body onload="preload()">
+    <canvas id="canvas" width="740" height="540"></canvas>
+
+    <!-- JavaScript Section -->
+    <script src="Scripts/lib/jquery-2.1.1.min.js"></script>
+    <script src="Scripts/lib/easeljs-0.7.1.min.js"></script>
+    <script src="Scripts/lib/tweenjs-0.5.1.min.js"></script>
+    <script src="Scripts/lib/soundjs-0.5.2.min.js"></script>
+    <script src="Scripts/lib/preloadjs-0.4.1.min.js"></script>
+    <script src="Scripts/constants.js"></script>
+    <script src="Scripts/managers/asset.js"></script>
+    <script src="Scripts/objects/cloud.js"></script>
+    <script src="Scripts/objects/island.js"></script>
+    <script src="Scripts/objects/ocean.js"></script>
+    <script src="Scripts/objects/plane.js"></script>
+    <script src="Scripts/objects/scoreboard.js"></script>
+    <script src="Scripts/objects/button.js"></script>
+    <script src="Scripts/objects/label.js"></script>
+    <script src="Scripts/objects/bullet.js"></script>
+    <script src="Scripts/objects/boss.js"></script>
+    <script src="Scripts/objects/superBullet.js"></script>
+    <script src="Scripts/objects/BossScoreboard.js"></script>
+    <script src="Scripts/objects/poo.js"></script>
+
+    <script src="Scripts/states/bossStage.js"></script>
+    <script src="Scripts/managers/collision.js"></script>
+    <script src="Scripts/managers/bulletCollision.js"></script>
+    <script src="Scripts/managers/bulletBossCollision.js"></script>
+    <script src="Scripts/managers/bossCollision.js"></script>
+    <script src="Scripts/states/menu.js"></script>
+    <script src="Scripts/states/play.js"></script>
+    <script src="Scripts/states/gameover.js"></script>
+    <script src="Scripts/states/instruction.js"></script>
+    <script src="Scripts/states/win.js"></script>
+
+    <script src="Scripts/game.js"></script>
+    <script src="Scripts/keys.js"></script>
+    <script src="Scripts/controls.js"></script>
+</body>
+</html>
