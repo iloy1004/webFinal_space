@@ -2,8 +2,8 @@
 var objects;
 (function (objects) {
     // Cloud class
-    var Cloud = (function () {
-        function Cloud(stage, game) {
+    var Enemy = (function () {
+        function Enemy(stage, game) {
             this.stage = stage;
             this.game = game;
             this.image = new createjs.Sprite(managers.Assets.atlas, "attackBird1");
@@ -16,7 +16,7 @@ var objects;
             game.addChild(this.image);
             game.addChild(this.image2);
         }
-        Cloud.prototype.update = function () {
+        Enemy.prototype.update = function () {
             this.image.y -= this.dy;
             this.image.x -= this.dx;
             this.image2.y -= this.dy;
@@ -29,7 +29,7 @@ var objects;
             }
         };
         //divide reset 
-        Cloud.prototype.reset = function (image) {
+        Enemy.prototype.reset = function (image) {
             switch (image) {
                 case 0:
                     this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
@@ -55,12 +55,12 @@ var objects;
                     break;
             }
         };
-        Cloud.prototype.destroy = function () {
+        Enemy.prototype.destroy = function () {
             game.removeChild(this.image);
             game.removeChild(this.image2);
         };
-        return Cloud;
+        return Enemy;
     })();
-    objects.Cloud = Cloud;
+    objects.Enemy = Enemy;
 })(objects || (objects = {}));
 //# sourceMappingURL=cloud.js.map

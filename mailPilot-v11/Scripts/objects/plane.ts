@@ -11,11 +11,24 @@ module objects {
         engineSound: createjs.SoundInstance;
         width: number;
         height: number;
-        constructor(stage: createjs.Stage, game: createjs.Container) {
+        constructor(stage: createjs.Stage, game: createjs.Container, currentStage:number) {
             this.stage = stage;
             this.game = game;
-            this.image = new createjs.Sprite(managers.Assets.shipAtlas, "ship");
-            
+
+            switch (currentStage) {
+                case constants.PLAY_LEVEL1_STATE:
+                    this.image = new createjs.Sprite(managers.Assets.atlas_level1, "ship");
+                    break;
+
+                case constants.PLAY_LEVEL2_STATE:
+                    this.image = new createjs.Sprite(managers.Assets.atlas_level2, "ship");
+                    break;
+
+                case constants.PLAY_LEVEL3_STATE:
+                    this.image = new createjs.Sprite(managers.Assets.atlas_level3, "ship");
+                    break;
+            }
+
             //this.image.x = 100;
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;

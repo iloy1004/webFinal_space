@@ -1,6 +1,6 @@
-/// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/bullet.ts" />
+/// <reference path="../objects/planets.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var managers;
 (function (managers) {
@@ -55,7 +55,7 @@ var managers;
         };
         // Utility Function to Check Collisions
         bulletCollision.prototype.update = function () {
-            for (var i = constants.CLOUD_NUM; i >= 0; i--) {
+            for (var i = constants.PLANET_NUM; i >= 0; i--) {
                 this.bulletAndCloud(this.clouds[i], this.bullet);
             }
         };

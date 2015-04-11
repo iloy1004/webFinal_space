@@ -1,6 +1,7 @@
-﻿/// <reference path="../objects/cloud.ts" />
+﻿
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/bullet.ts" />
+/// <reference path="../objects/planets.ts" />
 
 /// <reference path="../objects/scoreboard.ts" />
 
@@ -37,7 +38,7 @@ module managers {
         }
 
         // check collision between bullet and cloud
-        private bulletAndCloud(cloud: objects.Cloud, bullet: objects.Bullet) {
+        private bulletAndCloud(cloud: objects.Planets, bullet: objects.Bullet) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             var p3: createjs.Point = new createjs.Point();
@@ -75,7 +76,7 @@ module managers {
         // Utility Function to Check Collisions
         update() {
 
-            for (var i = constants.CLOUD_NUM; i >= 0; i--) {
+            for (var i = constants.PLANET_NUM; i >= 0; i--) {
                 this.bulletAndCloud(this.clouds[i], this.bullet);
             }
         }

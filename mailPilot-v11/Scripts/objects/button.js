@@ -10,8 +10,21 @@ var objects;
 (function (objects) {
     var Button = (function (_super) {
         __extends(Button, _super);
-        function Button(x, y, buttonIDString) {
-            _super.call(this, managers.Assets.atlas, buttonIDString);
+        function Button(x, y, buttonIDString, currentStage) {
+            switch (currentStage) {
+                case constants.HOME_STATE:
+                    _super.call(this, managers.Assets.atlas_level1, buttonIDString);
+                    break;
+                case constants.MENU_LEVEL1_STATE:
+                    _super.call(this, managers.Assets.atlas_level1, buttonIDString);
+                    break;
+                case constants.MENU_LEVEL2_STATE:
+                    _super.call(this, managers.Assets.atlas_level2, buttonIDString);
+                    break;
+                case constants.MENU_LEVEL3_STATE:
+                    _super.call(this, managers.Assets.atlas_level3, buttonIDString);
+                    break;
+            }
             this.regX = this.getBounds().width / 2;
             this.regY = this.getBounds().height / 2;
             this.x = x;

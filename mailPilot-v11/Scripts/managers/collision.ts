@@ -1,6 +1,8 @@
-﻿/// <reference path="../objects/cloud.ts" />
+﻿
+
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/plane.ts" />
+/// <reference path="../objects/planets.ts" />
 
 /// <reference path="../objects/scoreboard.ts" />
 
@@ -38,7 +40,7 @@ module managers {
         }
 
         // check collision between plane and any cloud object
-        private planeAndCloud(cloud: objects.Cloud) {
+        private planeAndCloud(cloud: objects.Planets) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
             var p3: createjs.Point = new createjs.Point();
@@ -83,7 +85,7 @@ module managers {
         update() {
 
 
-            for (var count = constants.CLOUD_NUM; count >= 0; count--) {
+            for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 this.planeAndCloud(this.clouds[count]);
             }
             this.planeAndIsland();

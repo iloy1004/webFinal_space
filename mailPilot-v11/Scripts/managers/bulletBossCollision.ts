@@ -1,4 +1,4 @@
-﻿/// <reference path="../objects/cloud.ts" />
+﻿/// <reference path="../objects/planets.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/bullet.ts" />
 

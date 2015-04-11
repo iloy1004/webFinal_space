@@ -1,6 +1,6 @@
 /// <reference path="../constants.ts" />
 /// <reference path="../objects/button.ts" />
-/// <reference path="../objects/cloud.ts" />
+/// <reference path="../objects/planets.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/ocean.ts" />
@@ -23,7 +23,7 @@ var states;
         constants.CURRENT_BOSS_HP = constants.BOSS_HP;
         constants.CURRENT_SCORE = 0;
         constants.engineSound.stop();
-        currentState = constants.PLAY_STATE;
+        currentState = constants.MENU_LEVEL1_STATE;
         changeState(currentState);
         constants.engineSound.stop();
     }
@@ -51,15 +51,15 @@ var states;
         finalScore = new objects.Label(stage.canvas.width / 2, 160, constants.CURRENT_SCORE + "");
         game.addChild(finalScore);
         // Display Try Again Button
-        tryAgain = new objects.Button(stage.canvas.width / 2, 280, "tryAgainButton");
+        tryAgain = new objects.Button(stage.canvas.width / 2, 280, "tryAgainButton", currentState);
         game.addChild(tryAgain);
         tryAgain.addEventListener("click", tryAgainClicked);
         // Display Try Again Button
-        backButton = new objects.Button(stage.canvas.width / 2, 360, "backButton");
+        backButton = new objects.Button(stage.canvas.width / 2, 360, "backButton", currentState);
         game.addChild(backButton);
         backButton.addEventListener("click", states.backClicked);
         // Display Play Again Button
-        msgButton = new objects.Button(stage.canvas.width / 2, 430, "instructionsButton");
+        msgButton = new objects.Button(stage.canvas.width / 2, 430, "instructionsButton", currentState);
         game.addChild(msgButton);
         msgButton.addEventListener("click", states.msgButtonClicked);
         stage.addChild(game);

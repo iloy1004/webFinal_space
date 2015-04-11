@@ -86,7 +86,7 @@ module states {
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
-        plane = new objects.Plane(stage, game);
+        plane = new objects.Plane(stage, game, currentState);
         plane.image.addEventListener("click", shoot);
         plane.engineSound.stop();
 

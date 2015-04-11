@@ -14,7 +14,7 @@ module states {
         game.removeAllChildren();
         game.removeAllEventListeners();
         constants.engineSound.stop();
-        currentState = constants.MENU_STATE;
+        currentState = constants.HOME_STATE;
         changeState(currentState);
     }
 
@@ -41,14 +41,14 @@ module states {
         var boss: createjs.Sprite;
         var poo: createjs.Sprite;
 
-        attackBird1 = new createjs.Sprite(managers.Assets.atlas, "attackBird1");
-        attackBird2 = new createjs.Sprite(managers.Assets.atlas, "attackBird2");
-        bonus1 = new createjs.Sprite(managers.Assets.atlas, "bonus1");
-        bonus2 = new createjs.Sprite(managers.Assets.atlas, "bonus2");
-        shot1 = new createjs.Sprite(managers.Assets.atlas, "1shot");
-        shot3 = new createjs.Sprite(managers.Assets.atlas, "3shot");
-        boss = new createjs.Sprite(managers.Assets.atlas, "boss");
-        poo = new createjs.Sprite(managers.Assets.atlas, "poo");
+        attackBird1 = new createjs.Sprite(managers.Assets.atlas_level1, "attackBird1");
+        attackBird2 = new createjs.Sprite(managers.Assets.atlas_level1, "attackBird2");
+        bonus1 = new createjs.Sprite(managers.Assets.atlas_level1, "bonus1");
+        bonus2 = new createjs.Sprite(managers.Assets.atlas_level1, "bonus2");
+        shot1 = new createjs.Sprite(managers.Assets.atlas_level1, "1shot");
+        shot3 = new createjs.Sprite(managers.Assets.atlas_level1, "3shot");
+        boss = new createjs.Sprite(managers.Assets.atlas_level1, "boss");
+        poo = new createjs.Sprite(managers.Assets.atlas_level1, "poo");
 
         constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
@@ -123,7 +123,7 @@ module states {
         game.addChild(poo);
 
         // Display Try Again Button
-        backButton = new objects.Button(stage.canvas.width / 2, 650, "backButton");
+        backButton = new objects.Button(stage.canvas.width / 2, 650, "backButton", currentState);
         game.addChild(backButton);
         backButton.addEventListener("click", backClicked);
 

@@ -1,6 +1,6 @@
-/// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/plane.ts" />
+/// <reference path="../objects/planets.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var managers;
 (function (managers) {
@@ -63,7 +63,7 @@ var managers;
         };
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
-            for (var count = constants.CLOUD_NUM; count >= 0; count--) {
+            for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 this.planeAndCloud(this.clouds[count]);
             }
             this.planeAndIsland();
