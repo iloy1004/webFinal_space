@@ -24,7 +24,7 @@ var objects;
             //}
         };
         Ocean.prototype.reset = function () {
-            this.image.x = -740;
+            this.image.x = -1200;
             //this.image.y = -960;
         };
         Ocean.prototype.destroy = function () {

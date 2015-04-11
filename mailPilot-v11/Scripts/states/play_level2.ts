@@ -35,18 +35,23 @@ module states {
         collision.update();
         scoreboard.update();
 
-        if (scoreboard.hp <= 0) {
-            stage.removeChild(game);
-            plane.destroy();
+        if (scoreboard.gas <= 0) {
 
-            game.removeAllChildren();
-            game.removeAllEventListeners();
+            scoreboard.lives -= 1;
 
-            var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
+            if (scoreboard.lives <= 0) {
+                stage.removeChild(game);
+                plane.destroy();
 
-            constants.CURRENT_SCORE = scoreboard.score;
-            currentState = constants.GAME_OVER_STATE;
-            changeState(currentState);
+                game.removeAllChildren();
+                game.removeAllEventListeners();
+
+                var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
+
+                constants.CURRENT_SCORE = scoreboard.score;
+                currentState = constants.GAME_OVER_STATE;
+                changeState(currentState);
+            }
         }
 
         if (scoreboard.score > constants.POINT_SCORE) {
@@ -58,7 +63,7 @@ module states {
             }
 
             constants.CURRENT_SCORE = scoreboard.score;
-            constants.CURRENT_PLANE_HP = scoreboard.hp;
+            constants.CURRENT_PLANE_GAS = scoreboard.gas;
 
             plane.engineSound.stop();
 

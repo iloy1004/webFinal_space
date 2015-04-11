@@ -38,12 +38,12 @@ var managers;
             p3.y = cloud.image2.y;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.hp -= 50;
+                this.scoreboard.gas -= 2;
                 cloud.reset(1);
             }
             if (this.distance(p1, p3) < ((this.plane.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.hp -= 50;
+                this.scoreboard.gas -= 2;
                 cloud.reset(2);
             }
         };

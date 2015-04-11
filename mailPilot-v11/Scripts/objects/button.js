@@ -13,8 +13,6 @@ var objects;
         function Button(x, y, buttonIDString, currentStage) {
             switch (currentStage) {
                 case constants.HOME_STATE:
-                    _super.call(this, managers.Assets.atlas_level1, buttonIDString);
-                    break;
                 case constants.MENU_LEVEL1_STATE:
                     _super.call(this, managers.Assets.atlas_level1, buttonIDString);
                     break;

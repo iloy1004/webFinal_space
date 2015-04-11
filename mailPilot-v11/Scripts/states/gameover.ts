@@ -20,7 +20,7 @@ module states {
         game.removeAllChildren();
         game.removeAllEventListeners();
         constants.PLANE_LIVES = 5;
-        constants.CURRENT_PLANE_HP = constants.PLANE_HP;
+        constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
         constants.CURRENT_BOSS_HP = constants.BOSS_HP;
         constants.CURRENT_SCORE = 0;
         constants.engineSound.stop();

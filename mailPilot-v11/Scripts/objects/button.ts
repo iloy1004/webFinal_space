@@ -6,8 +6,6 @@ module objects {
 
             switch (currentStage) {
                 case constants.HOME_STATE:
-                    super(managers.Assets.atlas_level1, buttonIDString);
-                    break;
                 case constants.MENU_LEVEL1_STATE:
                     super(managers.Assets.atlas_level1, buttonIDString);
                     break;

@@ -1,40 +1,44 @@
-﻿module objects {
+﻿/// <reference path="../managers/asset.ts" />
+
+module objects {
     // Scoreboard Class
     export class Scoreboard {
         stage: createjs.Stage;
         game: createjs.Container;
-        hp: number;
+        sqaureGas : createjs.Sprite;
+        gas: number;
+        lives: number;
         score: number;
         label: createjs.Text;
         labelText: string = "";
         width: number;
         height: number;
-        sqaureHp = new createjs.Shape();
+        
 
         constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
-            this.hp = constants.CURRENT_PLANE_HP;
+            this.gas = constants.CURRENT_PLANE_GAS;
+            this.lives = constants.CURRENT_PLANE_LIVES;
             this.score = 0;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
 
             // drawing hp
-            this.sqaureHp = new createjs.Shape();
-            this.sqaureHp.graphics.beginFill("orange").drawRect(110,35,100,25);
-            //x, y, width, height
+            this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas20");
 
             this.update();
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
 
-            game.addChild(this.sqaureHp);
+            game.addChild(this.sqaureGas);
             game.addChild(this.label);
             
         }
 
         update() {
 
-            var currentHP = (parseInt(this.hp.toString()) / constants.PLANE_HP) * 100;
+            var currentHP = constants.CURRENT_PLANE_GAS;
+            currentHP -= 1;
 
             this.labelText = "* HP:          * Score: " + this.score.toString();
             this.label.text = this.labelText;
@@ -42,20 +46,23 @@
 
             this.drawHP(currentHP);
 
-            constants.CURRENT_PLANE_HP = currentHP;
-        }
+            constants.CURRENT_PLANE_GAS = currentHP;
+        }    
 
         destroy() {
             game.removeChild(this.label);
         }
 
         drawHP(hp:number) {
-            game.removeChild(this.sqaureHp);
+            game.removeChild(this.sqaureGas);
 
-            this.sqaureHp = new createjs.Shape();
-            this.sqaureHp.graphics.beginFill("orange").drawRect(110, 35, hp, 25);
-            
-            game.addChild(this.sqaureHp);
+            var imgName = "gas" + hp;
+
+            this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, imgName);
+            this.sqaureGas.x = 100;
+            this.sqaureGas.y = 20;
+
+            game.addChild(this.sqaureGas);
         }
     }
 } 

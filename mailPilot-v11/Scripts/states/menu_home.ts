@@ -13,8 +13,8 @@ module states {
         //plane.destroy();
         game.removeAllChildren();
         game.removeAllEventListeners();
-        constants.PLANE_LIVES = 5;
-        constants.CURRENT_PLANE_HP = constants.PLANE_HP;
+        constants.PLANE_LIVES = 3;
+        constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
         constants.CURRENT_BOSS_HP = constants.BOSS_HP;
         constants.CURRENT_SCORE = 0;
         constants.engineSound.stop();
@@ -65,7 +65,7 @@ module states {
         playButton.addEventListener("click", playButtonClicked);
 
         // Display Play Again Button
-        msgButton = new objects.Button(stage.canvas.width / 2, 330, "exitBnt", currentState);
+        msgButton = new objects.Button(stage.canvas.width / 2, 330, "exitBtn", currentState);
         game.addChild(msgButton);
         msgButton.addEventListener("click", msgButtonClicked);
 

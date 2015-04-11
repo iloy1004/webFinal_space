@@ -18,12 +18,12 @@
         constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
-            this.plane_hp = constants.CURRENT_PLANE_HP;
+            this.plane_hp = constants.CURRENT_PLANE_GAS;
             this.boss_hp = constants.CURRENT_BOSS_HP;
             this.score = constants.CURRENT_SCORE;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
             this.label2 = new createjs.Text(this.labelText2, constants.LABEL_FONT, constants.LABEL_COLOUR);
-            var currentHP = (this.plane_hp / constants.PLANE_HP) * 100;
+            var currentHP = (this.plane_hp / constants.PLANE_GAS) * 100;
 
             // drawing hp
             //x, y, width, height
@@ -47,7 +47,7 @@
         }
 
         update() {
-            var currentHP = (this.plane_hp / constants.PLANE_HP) * 100;
+            var currentHP = (this.plane_hp / constants.PLANE_GAS) * 100;
             var currentBossHP = (this.boss_hp / constants.BOSS_HP) * 100;
 
             this.labelText = "* HP: ";
@@ -75,7 +75,7 @@
             this.sqaureHp = new createjs.Shape();
             this.sqaureHp.graphics.beginFill("orange").drawRect(x, y, hp, 25);
 
-            constants.CURRENT_PLANE_HP = hp;
+            constants.CURRENT_PLANE_GAS = hp;
 
             game.addChild(this.sqaureHp);
         }

@@ -85,8 +85,13 @@ function init(): void {
     currentState = constants.HOME_STATE;
     isBullet = constants.IS_BULLET;
     changeState(currentState);
-
    
+    createjs.Ticker.addEventListener("ScoreTick", updateScore);
+}
+
+function updateScore() {
+    createjs.Ticker.setFPS(10);
+    scoreboard.update();
 }
 
 // Add touch support for mobile devices

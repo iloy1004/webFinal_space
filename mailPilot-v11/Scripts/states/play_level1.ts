@@ -33,7 +33,10 @@ module states {
         collision.update();
         scoreboard.update();
 
-        if (scoreboard.hp <= 0) {
+        if (scoreboard.gas <= 0) {
+
+
+
             stage.removeChild(game);
             plane.destroy();
 
@@ -56,7 +59,7 @@ module states {
             }
 
             constants.CURRENT_SCORE = scoreboard.score;
-            constants.CURRENT_PLANE_HP = scoreboard.hp;
+            constants.CURRENT_PLANE_GAS = scoreboard.gas;
 
             plane.engineSound.stop();
 

@@ -13,7 +13,7 @@ module states {
         game.removeAllChildren();
         game.removeAllEventListeners();
         constants.PLANE_LIVES = 3;
-        constants.CURRENT_PLANE_HP = constants.PLANE_HP;
+        constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
         constants.engineSound.stop();
         currentState = constants.PLAY_LEVEL2_STATE;
         changeState(currentState);
@@ -32,6 +32,7 @@ module states {
 
         // Declare new Game Container
         game = new createjs.Container();
+        board = new createjs.Container();
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
@@ -47,21 +48,23 @@ module states {
         gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Adventure Time");
         game.addChild(gameNameLabel);
 
-        //var boardImg = new createjs.Sprite(managers.Assets.atlas_level2, "board");
-        //board.addChild(boardImg);
+        var boardImg = new createjs.Sprite(managers.Assets.atlas_level2, "board");
+        boardImg.x = 260;
+        boardImg.y = 140;
+        board.addChild(boardImg);
 
 
 
         // Display Play Again Button
-        playButton = new objects.Button(stage.canvas.width / 2, 250, "playBtn", currentState);
-        game.addChild(playButton);
-        //board.addChild(playButton);
+        playButton = new objects.Button(345, 342, "playBtn", currentState);
+        //game.addChild(playButton);
+        board.addChild(playButton);
         playButton.addEventListener("click", play2ButtonClicked);
 
         // Display Play Again Button
         exitButton = new objects.Button(stage.canvas.width / 2, 330, "exitBtn", currentState);
-        game.addChild(playButton);
-        //board.addChild(exitButton);
+        //game.addChild(playButton);
+        board.addChild(exitButton);
         exitButton.addEventListener("click", exitButtonClicked);
 
         game.addChild(board);

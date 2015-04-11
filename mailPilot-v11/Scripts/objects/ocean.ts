@@ -35,7 +35,7 @@ module objects {
         }
 
         reset() {
-            this.image.x = -740;
+            this.image.x = -1200;
             //this.image.y = -960;
         }
 
