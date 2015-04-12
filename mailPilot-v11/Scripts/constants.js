@@ -13,17 +13,20 @@ var constants;
     constants.WIN_STATE = 8;
     // Game Constants
     constants.IS_BULLET = false;
-    constants.PLANET_NUM = 2;
+    constants.PLANET_NUM = 1;
+    constants.ITEM_NUM = 3;
     constants.POO_NUM = 3;
     constants.LABEL_FONT = "40px Maven Pro";
     constants.LABEL_COLOUR = "#F9DCF3";
     // Current Game values
     constants.PLANE_LIVES = 3;
+    constants.BULLET_COUNT = 20;
     constants.CURRENT_SCORE = 0;
     constants.BOSS_HP = 1000;
-    constants.PLANE_GAS = 20;
+    constants.PLANE_GAS = 100;
     constants.CURRENT_PLANE_LIVES = 3;
-    constants.CURRENT_PLANE_GAS = 20;
+    constants.CURRENT_BULLETS = 20;
+    constants.CURRENT_PLANE_GAS = 100;
     constants.CURRENT_BOSS_HP = 1000;
     constants.POINT_SCORE = 1500; //the standard score for moving to boss stage
     constants.engineSound;

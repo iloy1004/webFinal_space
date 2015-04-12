@@ -18,10 +18,13 @@ var states;
     function playState() {
         //bullet.update();
         ocean.update();
-        island.update();
+        //island.update();
         plane.update();
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
             planets[count].update();
+        }
+        for (var i = constants.ITEM_NUM; i >= 0; i--) {
+            items[i].update();
         }
         collision.update();
         scoreboard.update();
@@ -52,33 +55,26 @@ var states;
         }
     }
     states.playState = playState;
-    function shoot() {
-        if (!constants.IS_BULLET) {
-            // Create multiple bullets
-            bullet = new objects.Bullet(stage, game);
-            // Instantiate Collision Manager
-            bulletCollision = new managers.bulletCollision(planets, scoreboard, bullet);
-            constants.IS_BULLET = true;
-        }
-    }
     // play state Function
     function play() {
         // Declare new Game Container
         game = new createjs.Container();
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
-        island = new objects.Island(stage, game);
+        //island = new objects.Island(stage, game, currentState);
         plane = new objects.Plane(stage, game, currentState);
-        plane.image.addEventListener("click", shoot);
         // Show Cursor
         stage.cursor = "default";
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
             planets[count] = new objects.Planets(stage, game, currentState);
         }
+        for (var i = constants.ITEM_NUM; i >= 0; i--) {
+            items[i] = new objects.Island(stage, game, currentState);
+        }
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, island, planets, scoreboard);
+        collision = new managers.Collision(plane, planets, scoreboard, items);
         stage.addChild(game);
     }
     states.play = play;

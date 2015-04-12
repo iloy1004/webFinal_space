@@ -18,25 +18,24 @@ var states;
     function play3State() {
         //bullet.update();
         ocean.update();
-        island.update();
         plane.update();
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
             planets[count].update();
         }
+        for (var i = constants.ITEM_NUM; i >= 0; i--) {
+            items[i].update();
+        }
         collision.update();
         scoreboard.update();
-        if (scoreboard.gas <= 0) {
-            scoreboard.lives -= 1;
-            if (scoreboard.lives <= 0) {
-                stage.removeChild(game);
-                plane.destroy();
-                game.removeAllChildren();
-                game.removeAllEventListeners();
-                var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
-                constants.CURRENT_SCORE = scoreboard.score;
-                currentState = constants.GAME_OVER_STATE;
-                changeState(currentState);
-            }
+        if (scoreboard.lives <= 0) {
+            stage.removeChild(game);
+            plane.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
+            constants.CURRENT_SCORE = scoreboard.score;
+            currentState = constants.GAME_OVER_STATE;
+            changeState(currentState);
         }
         if (scoreboard.score > constants.POINT_SCORE) {
             stage.removeChild(game);
@@ -58,7 +57,7 @@ var states;
     function shoot() {
         if (!constants.IS_BULLET) {
             // Create multiple bullets
-            bullet = new objects.Bullet(stage, game);
+            bullet = new objects.Bullet(stage, game, constants.PLAY_LEVEL3_STATE, plane);
             // Instantiate Collision Manager
             bulletCollision = new managers.bulletCollision(planets, scoreboard, bullet);
             constants.IS_BULLET = true;
@@ -70,7 +69,7 @@ var states;
         game = new createjs.Container();
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
-        island = new objects.Island(stage, game);
+        //island = new objects.Island(stage, game, currentState);
         plane = new objects.Plane(stage, game, currentState);
         plane.image.addEventListener("click", shoot);
         // Show Cursor
@@ -78,10 +77,13 @@ var states;
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
             planets[count] = new objects.Planets(stage, game, currentState);
         }
+        for (var i = constants.ITEM_NUM; i >= 0; i--) {
+            items[i] = new objects.Island(stage, game, currentState);
+        }
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, island, planets, scoreboard);
+        collision = new managers.Collision(plane, planets, scoreboard, items);
         stage.addChild(game);
     }
     states.play3 = play3;

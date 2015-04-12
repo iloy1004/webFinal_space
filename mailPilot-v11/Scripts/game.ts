@@ -42,12 +42,13 @@ var board: createjs.Container;
 
 var ocean: objects.Ocean;
 var plane: objects.Plane;
-var island: objects.Island;
+//var island: objects.Island;
 //var bullet: objects.Bullet;
 var bullet: objects.Bullet;
 var isBullet: boolean;
 var planets = []; // Clouds array;
 var poos = []; // poo array;
+var items = [];
 var scoreboard: objects.Scoreboard;
 var bossScore: objects.BossScoreboard;
 var bossBird: objects.Boss;
@@ -85,13 +86,6 @@ function init(): void {
     currentState = constants.HOME_STATE;
     isBullet = constants.IS_BULLET;
     changeState(currentState);
-   
-    createjs.Ticker.addEventListener("ScoreTick", updateScore);
-}
-
-function updateScore() {
-    createjs.Ticker.setFPS(10);
-    scoreboard.update();
 }
 
 // Add touch support for mobile devices

@@ -35,12 +35,13 @@ var game;
 var board;
 var ocean;
 var plane;
-var island;
+//var island: objects.Island;
 //var bullet: objects.Bullet;
 var bullet;
 var isBullet;
 var planets = []; // Clouds array;
 var poos = []; // poo array;
+var items = [];
 var scoreboard;
 var bossScore;
 var bossBird;
@@ -71,11 +72,6 @@ function init() {
     currentState = constants.HOME_STATE;
     isBullet = constants.IS_BULLET;
     changeState(currentState);
-    createjs.Ticker.addEventListener("ScoreTick", updateScore);
-}
-function updateScore() {
-    createjs.Ticker.setFPS(10);
-    scoreboard.update();
 }
 // Add touch support for mobile devices
 function optimizeForMobile() {

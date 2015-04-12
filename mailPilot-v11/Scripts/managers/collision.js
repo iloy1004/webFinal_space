@@ -6,11 +6,14 @@ var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(plane, island, clouds, scoreboard) {
+        function Collision(plane, clouds, scoreboard, iteams) {
+            //private island: objects.Island;
             this.clouds = [];
+            this.items = [];
             this.plane = plane;
-            this.island = island;
+            //this.island = island;
             this.clouds = clouds;
+            this.items = iteams;
             this.scoreboard = scoreboard;
         }
         // Utility method - Distance calculation between two points
@@ -48,17 +51,35 @@ var managers;
             }
         };
         // check collision between plane and island
-        Collision.prototype.planeAndIsland = function () {
+        Collision.prototype.planeAndIsland = function (item) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
+            var p3 = new createjs.Point();
             p1.x = this.plane.image.x;
             p1.y = this.plane.image.y;
-            p2.x = this.island.image.x;
-            p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.island.height / 2))) {
+            p2.x = item.image.x;
+            p2.y = item.image.y;
+            p3.x = item.image2.x;
+            p3.y = item.image2.y;
+            if (this.distance(p1, p2) < ((this.plane.height / 2) + (item.height / 2))) {
                 createjs.Sound.play("yay");
-                this.scoreboard.score += 100;
-                this.island.reset();
+                constants.CURRENT_BULLETS += 3;
+                this.scoreboard.bullets += 3;
+                item.reset(1);
+            }
+            if (this.distance(p1, p3) < ((this.plane.height / 2) + (item.height / 2))) {
+                createjs.Sound.play("yay");
+                if (constants.CURRENT_PLANE_GAS >= 50) {
+                    constants.CURRENT_PLANE_GAS += 50;
+                    this.scoreboard.gas += 50;
+                    constants.CURRENT_PLANE_GAS += 100 - constants.CURRENT_PLANE_GAS;
+                    this.scoreboard.gas += 100 - this.scoreboard.gas;
+                }
+                else {
+                    constants.CURRENT_PLANE_GAS += 50;
+                    this.scoreboard.gas += 50;
+                }
+                item.reset(2);
             }
         };
         // Utility Function to Check Collisions
@@ -66,7 +87,9 @@ var managers;
             for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 this.planeAndCloud(this.clouds[count]);
             }
-            this.planeAndIsland();
+            for (var i = constants.ITEM_NUM; i >= 0; i--) {
+                this.planeAndIsland(this.items[i]);
+            }
         };
         return Collision;
     })();

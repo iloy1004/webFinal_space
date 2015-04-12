@@ -11,14 +11,16 @@ module managers {
     export class Collision {
         // class variables
         private plane: objects.Plane;
-        private island: objects.Island;
+        //private island: objects.Island;
         private clouds = [];
+        private items = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(plane: objects.Plane, island: objects.Island, clouds, scoreboard: objects.Scoreboard) {
+        constructor(plane: objects.Plane, clouds, scoreboard: objects.Scoreboard, iteams) {
             this.plane = plane;
-            this.island = island;
+            //this.island = island;
             this.clouds = clouds;
+            this.items = iteams;
             this.scoreboard = scoreboard;
         }
 
@@ -65,17 +67,40 @@ module managers {
         }
 
         // check collision between plane and island
-        private planeAndIsland() {
+        private planeAndIsland(item: objects.Island) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
+            var p3: createjs.Point = new createjs.Point();
+
             p1.x = this.plane.image.x;
             p1.y = this.plane.image.y;
-            p2.x = this.island.image.x;
-            p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.island.height / 2))) {
+            p2.x = item.image.x;
+            p2.y = item.image.y;
+            p3.x = item.image2.x;
+            p3.y = item.image2.y;
+
+            if (this.distance(p1, p2) < ((this.plane.height / 2) + (item.height / 2))) {
                 createjs.Sound.play("yay");
-                this.scoreboard.score += 100;
-                this.island.reset();
+                constants.CURRENT_BULLETS += 3;
+                this.scoreboard.bullets += 3;
+                item.reset(1);
+            }
+
+            if (this.distance(p1, p3) < ((this.plane.height / 2) + (item.height / 2))) {
+                createjs.Sound.play("yay");
+                if (constants.CURRENT_PLANE_GAS >= 50) {
+                    constants.CURRENT_PLANE_GAS += 50;
+                    this.scoreboard.gas += 50;
+
+                    constants.CURRENT_PLANE_GAS += 100 - constants.CURRENT_PLANE_GAS;
+                    this.scoreboard.gas += 100 - this.scoreboard.gas;
+                }
+                else {
+
+                    constants.CURRENT_PLANE_GAS += 50;
+                    this.scoreboard.gas += 50;
+                }
+                item.reset(2);
             }
         }
 
@@ -88,7 +113,10 @@ module managers {
             for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 this.planeAndCloud(this.clouds[count]);
             }
-            this.planeAndIsland();
+
+            for (var i = constants.ITEM_NUM; i >= 0; i--) {
+                this.planeAndIsland(this.items[i]);
+            }
         }
     }
 } 
