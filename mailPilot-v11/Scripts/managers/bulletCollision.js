@@ -43,6 +43,14 @@ var managers;
                 game.removeChild(bullet.image);
                 constants.IS_BULLET = false;
                 cloud.reset(1);
+                this.collisionImg1 = new createjs.Sprite(managers.Assets.atlas_all, "collision");
+                this.collisionImg1.x = p2.x;
+                this.collisionImg1.y = p2.y;
+                game.addChild(this.collisionImg1);
+                for (var i = 3; i >= 0; i--) {
+                    if (i == 0)
+                        game.removeChild(this.collisionImg1);
+                }
             }
             if (this.distance(p1, p3) < ((bullet.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("shot");
@@ -51,6 +59,14 @@ var managers;
                 game.removeChild(bullet.image);
                 constants.IS_BULLET = false;
                 cloud.reset(2);
+                this.collisionImg2 = new createjs.Sprite(managers.Assets.atlas_all, "collision");
+                this.collisionImg2.x = p3.x;
+                this.collisionImg2.y = p3.y;
+                game.addChild(this.collisionImg2);
+                for (var i = 3; i >= 0; i--) {
+                    if (i == 0)
+                        game.removeChild(this.collisionImg2);
+                }
             }
         };
         // Utility Function to Check Collisions

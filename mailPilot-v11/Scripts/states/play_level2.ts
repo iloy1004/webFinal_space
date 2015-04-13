@@ -64,6 +64,8 @@ module states {
             constants.CURRENT_SCORE = scoreboard.score;
             constants.CURRENT_PLANE_GAS = scoreboard.gas;
 
+            scoreboard.bullets = constants.CURRENT_BULLETS;
+
             plane.engineSound.stop();
 
             currentState = constants.MENU_LEVEL3_STATE;
@@ -78,7 +80,7 @@ module states {
     }
 
 
-    function shoot() {
+   export function shoot(): void {
         if (!constants.IS_BULLET) {
 
             // Create multiple bullets
@@ -121,7 +123,7 @@ module states {
 
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, planets, scoreboard, items);
+        collision = new managers.Collision(plane, planets, scoreboard, items, currentState);
 
         stage.addChild(game);
     }

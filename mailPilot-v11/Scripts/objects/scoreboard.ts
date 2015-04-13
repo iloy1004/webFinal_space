@@ -33,11 +33,11 @@ module objects {
             // drawing hp
             this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
             this.livesImg = new createjs.Sprite(managers.Assets.atlas_all, "lifes");
-            this.livesImg.x = 150;
-            this.livesImg.y = 20;
+            this.livesImg.x = 380;
+            this.livesImg.y = 35;
 
             this.bulletImg = new createjs.Sprite(managers.Assets.atlas_all, "bullets_counter");
-            this.bulletImg.x = 200;
+            this.bulletImg.x = 650;
             this.bulletImg.y = 20;
             
             this.width = this.label.getBounds().width;
@@ -59,7 +59,7 @@ module objects {
 
             this.bullets = constants.CURRENT_BULLETS;
 
-            this.labelText = "* HP:          *      : " + this.lives.toString() + "  *      : " + this.bullets.toString() + "  * Score: " + this.score.toString();
+            this.labelText = "* HP:          * Lives   : " + this.lives.toString() + "  * Bullets    : " + this.bullets.toString() + "  * Score: " + this.score.toString();
             this.label.text = this.labelText;
             this.label.y = 20;
 

@@ -11,12 +11,12 @@ module states {
         //plane.destroy();
         game.removeAllChildren();
         game.removeAllEventListeners();
-        constants.PLANE_LIVES = 5;
+
         constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
-        constants.CURRENT_BOSS_HP = constants.BOSS_HP;
+        constants.CURRENT_BULLETS = constants.BULLET_COUNT;
         constants.CURRENT_SCORE = 0;
         constants.engineSound.stop();
-        currentState = constants.MENU_LEVEL2_STATE;
+        currentState = constants.PLAY_LEVEL1_STATE;
         changeState(currentState);
     }
 
@@ -26,7 +26,7 @@ module states {
         game.removeAllChildren();
         game.removeAllEventListeners();
         constants.engineSound.stop();
-        currentState = constants.MSG_STATE;
+        currentState = constants.HOME_STATE;
         changeState(currentState);
     }
 
@@ -54,7 +54,7 @@ module states {
         constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Display Game Over
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Adventure Time");
+        gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Space War Z");
         game.addChild(gameNameLabel);
 
         // Display Play Again Button

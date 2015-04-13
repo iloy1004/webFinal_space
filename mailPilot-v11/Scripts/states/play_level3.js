@@ -83,7 +83,7 @@ var states;
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, planets, scoreboard, items);
+        collision = new managers.Collision(plane, planets, scoreboard, items, currentState);
         stage.addChild(game);
     }
     states.play3 = play3;

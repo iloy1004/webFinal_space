@@ -45,6 +45,7 @@ var states;
             }
             constants.CURRENT_SCORE = scoreboard.score;
             constants.CURRENT_PLANE_GAS = scoreboard.gas;
+            scoreboard.bullets = constants.CURRENT_BULLETS;
             plane.engineSound.stop();
             currentState = constants.MENU_LEVEL3_STATE;
             changeState(currentState);
@@ -65,6 +66,7 @@ var states;
             constants.CURRENT_BULLETS -= 1;
         }
     }
+    states.shoot = shoot;
     // play state Function
     function play2() {
         // Declare new Game Container
@@ -85,7 +87,7 @@ var states;
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, planets, scoreboard, items);
+        collision = new managers.Collision(plane, planets, scoreboard, items, currentState);
         stage.addChild(game);
     }
     states.play2 = play2;

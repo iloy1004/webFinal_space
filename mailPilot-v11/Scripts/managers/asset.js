@@ -107,6 +107,8 @@ var managers;
             [276, 20, 473, 313],
             [300, 198, 123, 43],
             [300, 249, 123, 43],
+            [36, 532, 51, 47],
+            [106, 539, 36, 37]
         ],
         "animations": {
             "ship": {
@@ -123,7 +125,9 @@ var managers;
             },
             "board": [9],
             "playBtn": [10],
-            "exitBtn": [11]
+            "exitBtn": [11],
+            "item1": [12],
+            "item2": [13]
         }
     };
     var atlas_Level2Data = {

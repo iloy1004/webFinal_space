@@ -12,7 +12,7 @@ module states {
         //plane.destroy();
         game.removeAllChildren();
         game.removeAllEventListeners();
-        constants.PLANE_LIVES = 3;
+        constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
         constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
         constants.engineSound.stop();
         currentState = constants.PLAY_LEVEL2_STATE;

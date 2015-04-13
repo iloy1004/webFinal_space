@@ -16,7 +16,7 @@ module managers {
         private items = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(plane: objects.Plane, clouds, scoreboard: objects.Scoreboard, iteams) {
+        constructor(plane: objects.Plane, clouds, scoreboard: objects.Scoreboard, iteams, currentStage) {
             this.plane = plane;
             //this.island = island;
             this.clouds = clouds;
@@ -80,25 +80,42 @@ module managers {
             p3.y = item.image2.y;
 
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (item.height / 2))) {
+
                 createjs.Sound.play("yay");
-                constants.CURRENT_BULLETS += 3;
-                this.scoreboard.bullets += 3;
+
+                if (currentState == constants.PLAY_LEVEL1_STATE) {
+                    scoreboard.score += 100;
+                    constants.CURRENT_SCORE += 100;
+                }
+                else {
+                    constants.CURRENT_BULLETS += 3;
+                    this.scoreboard.bullets += 3;
+                }
+
                 item.reset(1);
             }
 
             if (this.distance(p1, p3) < ((this.plane.height / 2) + (item.height / 2))) {
-                createjs.Sound.play("yay");
-                if (constants.CURRENT_PLANE_GAS >= 50) {
-                    constants.CURRENT_PLANE_GAS += 50;
-                    this.scoreboard.gas += 50;
 
-                    constants.CURRENT_PLANE_GAS += 100 - constants.CURRENT_PLANE_GAS;
-                    this.scoreboard.gas += 100 - this.scoreboard.gas;
+                createjs.Sound.play("yay");
+
+                if (currentState == constants.PLAY_LEVEL1_STATE) {
+                    scoreboard.score += 70;
+                    constants.CURRENT_SCORE += 70;
                 }
                 else {
+                    if (constants.CURRENT_PLANE_GAS >= 50) {
+                        constants.CURRENT_PLANE_GAS += 50;
+                        this.scoreboard.gas += 50;
 
-                    constants.CURRENT_PLANE_GAS += 50;
-                    this.scoreboard.gas += 50;
+                        constants.CURRENT_PLANE_GAS += 100 - constants.CURRENT_PLANE_GAS;
+                        this.scoreboard.gas += 100 - this.scoreboard.gas;
+                    }
+                    else {
+
+                        constants.CURRENT_PLANE_GAS += 50;
+                        this.scoreboard.gas += 50;
+                    }
                 }
                 item.reset(2);
             }

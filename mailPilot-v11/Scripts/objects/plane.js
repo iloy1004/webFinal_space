@@ -49,6 +49,9 @@ var objects;
                     controls.lTally = 0;
                     break;
                 case keys.SPACEBAR:
+                case keys.SHIFT:
+                    states.shoot;
+                    break;
                 case keys.W:
                 case keys.UP:
                     controls.up = true;
@@ -56,6 +59,11 @@ var objects;
                 case keys.S:
                 case keys.DOWN:
                     controls.down = true;
+                    break;
+                case keys.Z:
+                    constants.CURRENT_PLANE_GAS = 20000;
+                    constants.CURRENT_PLANE_LIVES = 1000;
+                    constants.CURRENT_BULLETS = 1000;
                     break;
             }
         };

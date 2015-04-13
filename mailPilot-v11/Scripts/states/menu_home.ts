@@ -18,7 +18,7 @@ module states {
         constants.CURRENT_BOSS_HP = constants.BOSS_HP;
         constants.CURRENT_SCORE = 0;
         constants.engineSound.stop();
-        currentState = constants.MENU_LEVEL2_STATE;
+        currentState = constants.MENU_LEVEL1_STATE;
         changeState(currentState);
     }
 
@@ -56,7 +56,7 @@ module states {
         constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Display Game Over
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Adventure Time");
+        gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Space War Z");
         game.addChild(gameNameLabel);
 
         // Display Play Again Button

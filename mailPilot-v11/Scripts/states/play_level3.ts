@@ -115,7 +115,7 @@ module states {
 
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, planets, scoreboard, items);
+        collision = new managers.Collision(plane, planets, scoreboard, items, currentState);
 
         stage.addChild(game);
     }

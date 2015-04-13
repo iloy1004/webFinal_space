@@ -5,6 +5,8 @@
 /// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/plane.ts" />
+/// <reference path="../objects/planets.ts" />
+
 /// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/bossscoreboard.ts" />
@@ -33,6 +35,8 @@ module states {
         for (var i = constants.ITEM_NUM; i >= 0; i--) {
             items[i].update();
         }
+
+
 
 
         collision.update();
@@ -108,7 +112,7 @@ module states {
 
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, planets, scoreboard,items);
+        collision = new managers.Collision(plane, planets, scoreboard,items, currentState);
 
         stage.addChild(game);
     }
