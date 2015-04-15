@@ -1,7 +1,11 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
 /// <reference path="managers/collision.ts" />
-/// <reference path="managers/bulletcollision.ts" />
+/// <reference path="managers/bulletcollision_l2.ts" />
+/// <reference path="managers/bulletcollision_l3.ts" />
+/// <reference path="managers/collision_l2.ts" />
+/// <reference path="managers/collision_l3.ts" />
+
 /// <reference path="managers/bosscollision.ts" />
 /// <reference path="managers/bulletbosscollision.ts" />
 
@@ -9,7 +13,9 @@
 /// <reference path="objects/level2/planets.ts" />
 /// <reference path="objects/level3/planets.ts" />
 
-/// <reference path="objects/bullet.ts" />
+/// <reference path="objects/level2/bullet_l2.ts" />
+/// <reference path="objects/level3/bullet_l3.ts" />
+
 /// <reference path="objects/button.ts" />
 
 /// <reference path="objects/level1/island.ts" />
@@ -29,7 +35,7 @@
 
 /// <reference path="objects/boss.ts" />
 /// <reference path="objects/superbullet.ts" />
-/// <reference path="objects/bossscoreboard.ts" />
+
 /// <reference path="objects/poo.ts" />
 
 /// <reference path="states/play_level1.ts" />
@@ -73,8 +79,11 @@ var scoreBoard_L3: objects.Scoreboard_L3;
 var bossBird: objects.Boss;
 
 var collision: managers.Collision;
+var collision_L2: managers.Collision_L2;
+var collision_L3: managers.Collision_L3;
 var bossCollision: managers.bossCollision;
-var bulletCollision: managers.bulletCollision;
+var bulletCollision_L2: managers.bulletCollision_L2;
+var bulletColletion_L3: managers.bulletCollision_L3;
 var bulletBossCollision: managers.bulletBossCollision;
 
 var tryAgain: objects.Button;

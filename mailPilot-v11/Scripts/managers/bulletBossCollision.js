@@ -1,7 +1,7 @@
-/// <reference path="../objects/planets.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/level3/plane.ts" />
+/// <reference path="../objects/level3/planets.ts" />
+/// <reference path="../objects/level3/bullet_l3.ts" />
+/// <reference path="../objects/level3/scoreboard.ts" />
 var managers;
 (function (managers) {
     // Collision Manager Class

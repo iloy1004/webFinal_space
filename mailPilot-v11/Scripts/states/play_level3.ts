@@ -6,24 +6,27 @@
 /// <reference path="../objects/level3/island.ts" />
 
 /// <reference path="../objects/level3/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
+
+/// <reference path="../objects/level3/bullet_l3.ts" />
+
 /// <reference path="../objects/level3/scoreboard.ts" />
 
-/// <reference path="../objects/bossscoreboard.ts" />
+
 
 /// <reference path="../objects/boss.ts" />
 /// <reference path="../objects/superbullet.ts" />
 
 /// <reference path="../managers/asset.ts" />
 /// <reference path="../managers/collision.ts" />
-/// <reference path="../managers/bulletcollision.ts" />
+
+/// <reference path="../managers/bulletcollision_l3.ts" />
 /// <reference path="../managers/bosscollision.ts" />
 
 module states {
     export function play3State() {
         //bullet.update();
         ocean.update();
-        plane.update();
+        plane_L3.update();
 
 
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
@@ -34,13 +37,13 @@ module states {
             items[i].update();
         }
 
-        collision.update();
-        scoreboard.update();
+        collision_L3.update();
+        scoreBoard_L3.update();
 
 
-            if (scoreboard.lives <= 0) {
+        if (scoreBoard_L3.lives <= 0) {
                 stage.removeChild(game);
-                plane.destroy();
+                plane_L3.destroy();
 
                 game.removeAllChildren();
                 game.removeAllEventListeners();
@@ -52,7 +55,7 @@ module states {
                 changeState(currentState);
             }
 
-        if (scoreboard.score > constants.POINT_SCORE + 1500) {
+        if (scoreBoard_L3.score > constants.POINT_SCORE + 1500) {
 
             stage.removeChild(game);
 
@@ -60,10 +63,10 @@ module states {
                 planets[count].destroy();
             }
 
-            constants.CURRENT_SCORE = scoreboard.score;
-            constants.CURRENT_PLANE_GAS = scoreboard.gas;
+            constants.CURRENT_SCORE = scoreBoard_L3.score;
+            constants.CURRENT_PLANE_GAS = scoreBoard_L3.gas;
 
-            plane.engineSound.stop();
+            plane_L3.engineSound.stop();
 
             currentState = constants.WIN_STATE;
             changeState(currentState);
@@ -71,7 +74,7 @@ module states {
 
         if (constants.IS_BULLET) {
             bullet.update();
-            bulletCollision.update();
+            bulletColletion_L3.update();
         }
     }
 
@@ -79,10 +82,10 @@ module states {
         if (!constants.IS_BULLET) {
 
             // Create multiple bullets
-            bullet = new objects.Bullet(stage, game, plane, "bullet_L3");
+            bullet = new objects.Bullet(stage, game, plane_L3, "bullet_L3");
 
             // Instantiate Collision Manager
-            bulletCollision = new managers.bulletCollision(planets, scoreboard, bullet);
+            bulletColletion_L3 = new managers.bulletCollision_L3(planets, scoreBoard_L3, bullet);
             constants.IS_BULLET = true;
         }
     }
@@ -96,8 +99,8 @@ module states {
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
         //island = new objects.Island(stage, game, currentState);
-        plane = new objects.Plane_L3(stage, game);
-        plane.image.addEventListener("click", shoot);
+        plane_L3 = new objects.Plane_L3(stage, game);
+        plane_L3.image.addEventListener("click", shoot);
 
         // Show Cursor
         stage.cursor = "default";
@@ -113,11 +116,11 @@ module states {
         }
 
         // Display Scoreboard
-        scoreboard = new objects.Scoreboard_L3(stage, game);
+        scoreBoard_L3 = new objects.Scoreboard_L3(stage, game);
 
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, planets, scoreboard, items, currentState);
+        collision_L3 = new managers.Collision_L3(plane_L3, planets, scoreBoard_L3, items);
 
         stage.addChild(game);
     }

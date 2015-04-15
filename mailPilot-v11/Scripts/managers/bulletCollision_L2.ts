@@ -1,22 +1,22 @@
-﻿
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
-/// <reference path="../objects/planets.ts" />
+﻿/// <reference path="../objects/level2/plane.ts" />
+/// <reference path="../objects/level2/scoreboard.ts" />
+/// <reference path="../objects/level2/planets.ts" />
+/// <reference path="../objects/level2/bullet_l2.ts" />
 
-/// <reference path="../objects/scoreboard.ts" />
+
 
 module managers {
     // Collision Manager Class
-    export class bulletCollision {
+    export class bulletCollision_L2 {
 
         // class variables
         private bullet: objects.Bullet;
         private clouds = [];
-        private scoreboard: objects.Scoreboard;
+        private scoreboard: objects.Scoreboard_L2;
         private collisionImg1: createjs.Sprite;
         private collisionImg2: createjs.Sprite;
 
-        constructor(clouds, scoreboard: objects.Scoreboard, bullet: objects.Bullet) {
+        constructor(clouds, scoreboard: objects.Scoreboard_L2, bullet: objects.Bullet) {
             this.clouds = clouds;
             this.scoreboard = scoreboard;
             this.bullet = bullet;

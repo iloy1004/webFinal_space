@@ -3,9 +3,9 @@
 /// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/boss.ts" />
 /// <reference path="../objects/poo.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/level3/plane.ts" />
 /// <reference path="../objects/superbullet.ts" />
+/// <reference path="../objects/level3/scoreboard.ts" />
 /// <reference path="../managers/asset.ts" />
 /// <reference path="../managers/bosscollision.ts" />
 /// <reference path="../managers/bulletbosscollision.ts" />
@@ -19,25 +19,25 @@ var states;
             poos[count].update();
         }
         bossCollision.update();
-        bossScore.update();
+        scoreBoard_L3.update();
         bossBird.update();
-        if (bossScore.plane_hp <= 0) {
+        if (scoreBoard_L3.gas <= 0) {
             stage.removeChild(game);
             plane.destroy();
             game.removeAllChildren();
             game.removeAllEventListeners();
-            constants.CURRENT_SCORE = bossScore.score;
+            constants.CURRENT_SCORE = scoreBoard_L3.score;
             bossBird.engineSound.stop();
             var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
-        if (bossScore.boss_hp <= 0) {
+        if (scoreBoard_L3.boss_hp <= 0) {
             stage.removeChild(game);
             plane.destroy();
             game.removeAllChildren();
             game.removeAllEventListeners();
-            constants.CURRENT_SCORE = bossScore.score;
+            constants.CURRENT_SCORE = scoreBoard_L3.score;
             bossBird.engineSound.stop();
             currentState = constants.WIN_STATE;
             changeState(currentState);
@@ -53,7 +53,7 @@ var states;
             // Create multiple bullets
             bullet = new objects.SuperBullet(stage, game);
             // Instantiate Collision Manager
-            bulletBossCollision = new managers.bulletBossCollision(bossBird, bossScore, bullet, poos);
+            bulletBossCollision = new managers.bulletBossCollision(bossBird, scoreBoard_L3, bullet, poos);
             constants.IS_BULLET = true;
         }
     }
@@ -63,19 +63,19 @@ var states;
         game = new createjs.Container();
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
-        plane = new objects.Plane(stage, game, currentState);
-        plane.image.addEventListener("click", shoot);
-        plane.engineSound.stop();
+        plane_L3 = new objects.Plane(stage, game);
+        plane_L3.image.addEventListener("click", shoot);
+        plane_L3.engineSound.stop();
         bossBird = new objects.Boss(stage, game);
         // Show Cursor
         stage.cursor = "default";
         // Display Scoreboard
-        bossScore = new objects.BossScoreboard(stage, game);
+        scoreBoard_L3 = new objects.Scoreboard_L3(stage, game);
         for (var count = constants.POO_NUM; count >= 0; count--) {
             poos[count] = new objects.Poo(stage, game);
         }
         // Instantiate Collision Manager
-        bossCollision = new managers.bossCollision(plane, bossBird, poos, bossScore);
+        bossCollision = new managers.bossCollision(plane, bossBird, poos, scoreBoard_L3);
         //game.addEventListener("click", shoot);
         stage.addChild(game);
         //stage.addEventListener("click", shoot);

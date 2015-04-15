@@ -1,11 +1,8 @@
 ﻿
 /// <reference path="../objects/level1/island.ts" />
-
-/// <reference path="../objects/island.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/planets.ts" />
-
-/// <reference path="../objects/scoreboard.ts" />
+/// <reference path="../objects/level1/plane.ts" />
+/// <reference path="../objects/level1/planets.ts" />
+/// <reference path="../objects/level1/scoreboard.ts" />
 
 module managers {
     // Collision Manager Class
@@ -84,15 +81,8 @@ module managers {
 
                 createjs.Sound.play("yay");
 
-                if (currentState == constants.PLAY_LEVEL1_STATE) {
-                    scoreboard.score += 100;
-                    constants.CURRENT_SCORE += 100;
-                }
-                else {
-                    constants.CURRENT_BULLETS += 3;
-                    this.scoreboard.bullets += 3;
-                }
-
+                scoreboard.score += 100;
+                constants.CURRENT_SCORE += 100;
                 item.reset(1);
             }
 

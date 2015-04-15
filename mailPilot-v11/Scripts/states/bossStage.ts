@@ -5,9 +5,10 @@
 /// <reference path="../objects/boss.ts" />
 /// <reference path="../objects/poo.ts" />
 
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/level3/plane.ts" />
+
 /// <reference path="../objects/superbullet.ts" />
+/// <reference path="../objects/level3/scoreboard.ts" />
 
 /// <reference path="../managers/asset.ts" />
 /// <reference path="../managers/bosscollision.ts" />
@@ -26,16 +27,16 @@ module states {
         }
 
         bossCollision.update();
-        bossScore.update();
+        scoreBoard_L3.update();
         bossBird.update();
 
-        if (bossScore.plane_hp <= 0) {
+        if (scoreBoard_L3.gas <= 0) {
             stage.removeChild(game);
             plane.destroy();
 
             game.removeAllChildren();
             game.removeAllEventListeners();
-            constants.CURRENT_SCORE = bossScore.score;
+            constants.CURRENT_SCORE = scoreBoard_L3.score;
 
             bossBird.engineSound.stop();
 
@@ -45,13 +46,13 @@ module states {
             changeState(currentState);
         }
 
-        if (bossScore.boss_hp <= 0) {
+        if (scoreBoard_L3.boss_hp <= 0) {
             stage.removeChild(game);
             plane.destroy();
 
             game.removeAllChildren();
             game.removeAllEventListeners();
-            constants.CURRENT_SCORE = bossScore.score;
+            constants.CURRENT_SCORE = scoreBoard_L3.score;
 
             bossBird.engineSound.stop();
 
@@ -72,7 +73,7 @@ module states {
             bullet = new objects.SuperBullet(stage, game);
 
             // Instantiate Collision Manager
-            bulletBossCollision = new managers.bulletBossCollision(bossBird, bossScore, bullet, poos);
+            bulletBossCollision = new managers.bulletBossCollision(bossBird, scoreBoard_L3, bullet, poos);
 
             constants.IS_BULLET = true;
         }
@@ -86,9 +87,9 @@ module states {
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
-        plane = new objects.Plane(stage, game, currentState);
-        plane.image.addEventListener("click", shoot);
-        plane.engineSound.stop();
+        plane_L3 = new objects.Plane(stage, game);
+        plane_L3.image.addEventListener("click", shoot);
+        plane_L3.engineSound.stop();
 
 
         bossBird = new objects.Boss(stage, game);
@@ -97,7 +98,7 @@ module states {
         stage.cursor = "default";
 
         // Display Scoreboard
-        bossScore = new objects.BossScoreboard(stage, game);
+        scoreBoard_L3 = new objects.Scoreboard_L3(stage, game);
 
         // Create multiple clouds
         for (var count = constants.POO_NUM; count >= 0; count--) {
@@ -105,7 +106,7 @@ module states {
         }
 
         // Instantiate Collision Manager
-        bossCollision = new managers.bossCollision(plane, bossBird, poos, bossScore);
+        bossCollision = new managers.bossCollision(plane, bossBird, poos, scoreBoard_L3);
 
         
         //game.addEventListener("click", shoot);

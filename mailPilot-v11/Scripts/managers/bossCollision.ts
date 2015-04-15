@@ -1,7 +1,9 @@
-﻿/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
+﻿/// <reference path="../objects/level3/plane.ts" />
+
+/// <reference path="../objects/level3/bullet_l3.ts" />
+
 /// <reference path="../objects/boss.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/level3/scoreboard.ts" />
 
 
 module managers {
@@ -10,11 +12,11 @@ module managers {
 
         // class variables
         private boss: objects.Boss;
-        private plane: objects.Plane;
+        private plane: objects.Plane_L3;
         private poos = [];
-        private scoreboard: objects.BossScoreboard;
+        private scoreboard: objects.Scoreboard_L3;
 
-        constructor(plane: objects.Plane, boss: objects.Boss, poos, scoreboard: objects.BossScoreboard) {
+        constructor(plane: objects.Plane_L3, boss: objects.Boss, poos, scoreboard: objects.Scoreboard_L3) {
             this.boss = boss;
             this.scoreboard = scoreboard;
             this.plane = plane;
@@ -48,7 +50,7 @@ module managers {
             p2.y = poo.image.y;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (poo.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.plane_hp -= 5;
+                this.scoreboard.gas -= 5;
                 poo.reset();
             }
         }
@@ -66,7 +68,7 @@ module managers {
 
             if (this.distance(p1, p2) < ((plane.height / 2) + (boss.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.plane_hp -= 10;
+                this.scoreboard.gas -= 10;
             }
         }
 

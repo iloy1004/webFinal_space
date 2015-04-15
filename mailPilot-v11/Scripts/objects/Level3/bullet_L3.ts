@@ -1,4 +1,4 @@
-﻿/// <reference path="../managers/asset.ts" />
+﻿/// <reference path="../../managers/asset.ts" />
 
 module objects {
     // Island Class
@@ -10,7 +10,7 @@ module objects {
         width: number;
         dy: number;
 
-        constructor(stage: createjs.Stage, game: createjs.Container, plane: objects.Plane, bulletName: string) {
+        constructor(stage: createjs.Stage, game: createjs.Container, plane: objects.Plane_L3, bulletName: string) {
             this.stage = stage;
             this.game = game;
             this.image = new createjs.Sprite(managers.Assets.atlas_all, bulletName);

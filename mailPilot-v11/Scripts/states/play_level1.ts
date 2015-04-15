@@ -9,18 +9,15 @@
 
 /// <reference path="../objects/level1/plane.ts" />
 
-/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/level1/scoreboard.ts" />
 
-/// <reference path="../objects/bossscoreboard.ts" />
 
 /// <reference path="../objects/boss.ts" />
 /// <reference path="../objects/superbullet.ts" />
 
 /// <reference path="../managers/asset.ts" />
 /// <reference path="../managers/collision.ts" />
-/// <reference path="../managers/bulletcollision.ts" />
-/// <reference path="../managers/bosscollision.ts" />
+
 
 module states {
     export function playState() {
@@ -79,10 +76,7 @@ module states {
             changeState(currentState);
         }
 
-        if (constants.IS_BULLET) {
-            bullet.update();
-            bulletCollision.update();
-        }
+   
     }
 
 

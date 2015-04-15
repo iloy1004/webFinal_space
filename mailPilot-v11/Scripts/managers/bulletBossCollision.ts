@@ -1,8 +1,12 @@
-﻿/// <reference path="../objects/planets.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
+﻿
+/// <reference path="../objects/level3/plane.ts" />
+/// <reference path="../objects/level3/planets.ts" />
 
-/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/level3/bullet_l3.ts" />
+
+/// <reference path="../objects/level3/scoreboard.ts" />
+
+
 
 module managers {
     // Collision Manager Class
@@ -11,10 +15,10 @@ module managers {
         // class variables
         private bullet: objects.Bullet;
         private boss: objects.Boss;
-        private scoreboard: objects.BossScoreboard;
+        private scoreboard: objects.Scoreboard_L3;
         private poos = [];
 
-        constructor(boss: objects.Boss, scoreboard: objects.BossScoreboard, bullet: objects.Bullet, poos) {
+        constructor(boss: objects.Boss, scoreboard: objects.Scoreboard_L3, bullet: objects.Bullet, poos) {
             this.scoreboard = scoreboard;
             this.bullet = bullet;
             this.boss = boss;

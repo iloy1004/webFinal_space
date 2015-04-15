@@ -4,15 +4,11 @@
 /// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/level1/island.ts" />
 /// <reference path="../objects/level1/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/level1/scoreboard.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
 /// <reference path="../objects/boss.ts" />
 /// <reference path="../objects/superbullet.ts" />
 /// <reference path="../managers/asset.ts" />
 /// <reference path="../managers/collision.ts" />
-/// <reference path="../managers/bulletcollision.ts" />
-/// <reference path="../managers/bosscollision.ts" />
 var states;
 (function (states) {
     function playState() {
@@ -48,10 +44,6 @@ var states;
             plane.engineSound.stop();
             currentState = constants.MENU_LEVEL2_STATE;
             changeState(currentState);
-        }
-        if (constants.IS_BULLET) {
-            bullet.update();
-            bulletCollision.update();
         }
     }
     states.playState = playState;

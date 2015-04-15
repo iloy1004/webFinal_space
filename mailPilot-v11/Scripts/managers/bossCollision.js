@@ -1,7 +1,7 @@
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
+/// <reference path="../objects/level3/plane.ts" />
+/// <reference path="../objects/level3/bullet_l3.ts" />
 /// <reference path="../objects/boss.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/level3/scoreboard.ts" />
 var managers;
 (function (managers) {
     // Collision Manager Class
@@ -35,7 +35,7 @@ var managers;
             p2.y = poo.image.y;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (poo.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.plane_hp -= 5;
+                this.scoreboard.gas -= 5;
                 poo.reset();
             }
         };
@@ -49,7 +49,7 @@ var managers;
             p2.y = boss.image.y;
             if (this.distance(p1, p2) < ((plane.height / 2) + (boss.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.plane_hp -= 10;
+                this.scoreboard.gas -= 10;
             }
         };
         // Utility Function to Check Collisions

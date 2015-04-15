@@ -1,12 +1,9 @@
 ﻿/// <reference path="../constants.ts" />
 /// <reference path="../objects/button.ts" />
-/// <reference path="../objects/planets.ts" />
 
-/// <reference path="../objects/island.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/ocean.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
+
 
 module states {
     export function winState() {
@@ -40,7 +37,7 @@ module states {
         game.addChild(finalScoreLabel);
 
         // Display Final Score
-        finalScore = new objects.Label(stage.canvas.width / 2, 160, bossScore.score.toString());
+        finalScore = new objects.Label(stage.canvas.width / 2, 160, scoreBoard_L3.score.toString());
         game.addChild(finalScore);
 
         // Display Try Again Button
