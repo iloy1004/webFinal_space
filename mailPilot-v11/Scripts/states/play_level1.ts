@@ -1,14 +1,17 @@
 ﻿/// <reference path="../objects/button.ts" />
-/// <reference path="../objects/planets.ts" />
+/// <reference path="../objects/level1/plane.ts" />
+
 
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/ocean.ts" />
-/// <reference path="../objects/island.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/planets.ts" />
+/// <reference path="../objects/level1/island.ts" />
+
+
+/// <reference path="../objects/level1/plane.ts" />
 
 /// <reference path="../objects/bullet.ts" />
-/// <reference path="../objects/scoreboard.ts" />
+/// <reference path="../objects/level1/scoreboard.ts" />
+
 /// <reference path="../objects/bossscoreboard.ts" />
 
 /// <reference path="../objects/boss.ts" />
@@ -92,19 +95,19 @@ module states {
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
         //island = new objects.Island(stage, game, currentState);
-        plane = new objects.Plane(stage, game,currentState);
+        plane = new objects.Plane(stage, game);
 
         // Show Cursor
         stage.cursor = "default";
 
         // Create multiple clouds
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
-            planets[count] = new objects.Planets(stage, game,currentState);
+            planets[count] = new objects.Planets(stage, game);
         }
 
         // Create multiple clouds
         for (var i = constants.ITEM_NUM; i >= 0; i--) {
-            items[i] = new objects.Island(stage, game, currentState);
+            items[i] = new objects.Island(stage, game);
         }
 
         // Display Scoreboard

@@ -50,7 +50,7 @@ var objects;
                     break;
                 case keys.SPACEBAR:
                 case keys.SHIFT:
-                    states.shoot;
+                    states.shoot();
                     break;
                 case keys.W:
                 case keys.UP:
@@ -98,8 +98,8 @@ var objects;
             else if (controls.down && this.image.y < 540)
                 this.image.y += 8;
             else {
-                this.image.y = this.stage.mouseY;
                 this.image.x = this.stage.mouseX;
+                this.image.y = this.stage.mouseY;
             }
         };
         Plane.prototype.destroy = function () {

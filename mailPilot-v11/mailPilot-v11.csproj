@@ -135,13 +135,21 @@
     <TypeScriptCompile Include="Scripts\objects\BossScoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\bullet.ts" />
     <TypeScriptCompile Include="Scripts\objects\button.ts" />
-    <TypeScriptCompile Include="Scripts\objects\planets.ts" />
-    <TypeScriptCompile Include="Scripts\objects\island.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level1\island.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level2\island.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level2\plane.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level3\plane.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level2\planets.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level3\planets.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level1\planets.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level3\island.ts" />
     <TypeScriptCompile Include="Scripts\objects\label.ts" />
     <TypeScriptCompile Include="Scripts\objects\ocean.ts" />
-    <TypeScriptCompile Include="Scripts\objects\plane.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level1\plane.ts" />
     <TypeScriptCompile Include="Scripts\objects\poo.ts" />
-    <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level1\scoreboard.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level2\scoreboard.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Level3\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\lib\preloadjs.d.ts" />
     <TypeScriptCompile Include="Scripts\lib\soundjs.d.ts" />
     <TypeScriptCompile Include="Scripts\objects\superBullet.ts" />
@@ -174,7 +182,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>32274</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:7777</IISUrl>
+          <IISUrl>http://localhost:7779</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

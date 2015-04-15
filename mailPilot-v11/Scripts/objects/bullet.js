@@ -3,17 +3,10 @@ var objects;
 (function (objects) {
     // Island Class
     var Bullet = (function () {
-        function Bullet(stage, game, currentStage, plane) {
+        function Bullet(stage, game, plane, bulletName) {
             this.stage = stage;
             this.game = game;
-            switch (currentStage) {
-                case constants.PLAY_LEVEL2_STATE:
-                    this.image = new createjs.Sprite(managers.Assets.atlas_all, "bullet_L2");
-                    break;
-                case constants.PLAY_LEVEL3_STATE:
-                    this.image = new createjs.Sprite(managers.Assets.atlas_all, "bullet_L3");
-                    break;
-            }
+            this.image = new createjs.Sprite(managers.Assets.atlas_all, bulletName);
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width / 2;

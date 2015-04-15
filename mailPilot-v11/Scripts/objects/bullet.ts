@@ -10,18 +10,10 @@ module objects {
         width: number;
         dy: number;
 
-        constructor(stage: createjs.Stage, game: createjs.Container, currentStage, plane: objects.Plane) {
+        constructor(stage: createjs.Stage, game: createjs.Container, plane: objects.Plane, bulletName: string) {
             this.stage = stage;
             this.game = game;
-
-            switch (currentStage) {
-                case constants.PLAY_LEVEL2_STATE:
-                    this.image = new createjs.Sprite(managers.Assets.atlas_all, "bullet_L2");
-                    break;
-                case constants.PLAY_LEVEL3_STATE:
-                    this.image = new createjs.Sprite(managers.Assets.atlas_all, "bullet_L3");
-                    break;
-            }
+            this.image = new createjs.Sprite(managers.Assets.atlas_all, bulletName);
 
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;

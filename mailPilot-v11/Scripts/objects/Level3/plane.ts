@@ -1,33 +1,21 @@
-﻿/// <reference path="../managers/asset.ts" />
-/// <reference path="../controls.ts" />
-/// <reference path="../keys.ts" />
+﻿/// <reference path="../../managers/asset.ts" />
+/// <reference path="../../controls.ts" />
+/// <reference path="../../keys.ts" />
 
 module objects {
     // Plane Class
-    export class Plane {
+    export class Plane_L3 {
         image: createjs.Sprite;
         stage: createjs.Stage;
         game: createjs.Container;
         engineSound: createjs.SoundInstance;
         width: number;
         height: number;
-        constructor(stage: createjs.Stage, game: createjs.Container, currentStage:number) {
+        constructor(stage: createjs.Stage, game: createjs.Container) {
             this.stage = stage;
             this.game = game;
 
-            switch (currentStage) {
-                case constants.PLAY_LEVEL1_STATE:
-                    this.image = new createjs.Sprite(managers.Assets.atlas_level1, "ship");
-                    break;
-
-                case constants.PLAY_LEVEL2_STATE:
-                    this.image = new createjs.Sprite(managers.Assets.atlas_level2, "ship");
-                    break;
-
-                case constants.PLAY_LEVEL3_STATE:
                     this.image = new createjs.Sprite(managers.Assets.atlas_level3, "ship");
-                    break;
-            }
 
             //this.image.x = 100;
             this.width = this.image.getBounds().width;
@@ -65,7 +53,7 @@ module objects {
                     break;
                 case keys.SPACEBAR:
                 case keys.SHIFT:
-                    states.shoot;
+                    states.shoot();
                     break;
                 case keys.W:
                 case keys.UP:
@@ -117,8 +105,8 @@ module objects {
             else if (controls.down && this.image.y < 540)
                 this.image.y += 8;
             else {
-                this.image.y = this.stage.mouseY;
                 this.image.x = this.stage.mouseX;
+                this.image.y = this.stage.mouseY;
             }
         }
         destroy() {

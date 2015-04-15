@@ -1,4 +1,5 @@
 ﻿
+/// <reference path="../objects/level1/island.ts" />
 
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/plane.ts" />

@@ -1,157 +1,123 @@
-﻿/// <reference path="../managers/asset.ts" />
-
-module objects {
+/// <reference path="../../managers/asset.ts" />
+var objects;
+(function (objects) {
     // Scoreboard Class
-    export class Scoreboard {
-        stage: createjs.Stage;
-        game: createjs.Container;
-        sqaureGas: createjs.Sprite;
-        livesImg: createjs.Sprite;
-        bulletImg: createjs.Sprite;
-        gas: number;
-        lives: number;
-        score: number;
-        bullets: number;
-        label: createjs.Text;
-        labelText: string = "";
-        width: number;
-        height: number;
-        currentHP: number;
-        
-
-        constructor(stage: createjs.Stage, game: createjs.Container) {
+    var Scoreboard_L3 = (function () {
+        function Scoreboard_L3(stage, game) {
+            this.labelText = "";
+            this.sqaureBossHp = new createjs.Shape();
             this.stage = stage;
             this.game = game;
             this.gas = constants.CURRENT_PLANE_GAS;
             this.lives = constants.CURRENT_PLANE_LIVES;
             this.bullets = constants.CURRENT_BULLETS;
+            this.boss_hp = constants.CURRENT_BOSS_HP;
             this.score = 0;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
-
             this.update();
-
             // drawing hp
             this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
             this.livesImg = new createjs.Sprite(managers.Assets.atlas_all, "lifes");
             this.livesImg.x = 380;
             this.livesImg.y = 35;
-
+            //drawing boss's hp
+            this.sqaureBossHp = new createjs.Shape();
+            this.sqaureBossHp.graphics.beginFill("red").drawRect(110, 35, 100, 25);
+            //bullet image
             this.bulletImg = new createjs.Sprite(managers.Assets.atlas_all, "bullets_counter");
             this.bulletImg.x = 650;
             this.bulletImg.y = 20;
-            
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
-
-            game.addChild(this.sqaureGas);
             game.addChild(this.livesImg);
+            game.addChild(this.sqaureGas);
             game.addChild(this.bulletImg);
+            game.addChild(this.sqaureBossHp);
             game.addChild(this.label);
-
-            
-            
         }
-
-        update() {
-
+        Scoreboard_L3.prototype.update = function () {
             this.gas = constants.CURRENT_PLANE_GAS;
             this.gas -= 0.05;
-
             this.bullets = constants.CURRENT_BULLETS;
-
-            this.labelText = "* HP:          * Lives   : " + this.lives.toString() + "  * Bullets    : " + this.bullets.toString() + "  * Score: " + this.score.toString();
+            var currentBossHP = (this.boss_hp / constants.BOSS_HP) * 100;
+            this.labelText = "* HP:          * Lives   : " + this.lives.toString() + "  * Bullets    : " + this.bullets.toString() + "  * Score: " + this.score.toString() + " * Boss's HP";
+            this.drawBossHP(currentBossHP, 470, 35);
             this.label.text = this.labelText;
             this.label.y = 20;
-
             this.drawHP(Math.floor(this.gas));
-
-            console.log("current gas: " + Math.floor(this.gas));
-            console.log("constants gas: " + constants.CURRENT_PLANE_GAS);
-            
             constants.CURRENT_PLANE_GAS = Math.floor(this.gas);
-
             if (constants.CURRENT_PLANE_GAS == 0 && constants.CURRENT_PLANE_LIVES >= 1) {
                 constants.CURRENT_PLANE_LIVES -= 1;
                 this.lives = constants.CURRENT_PLANE_LIVES;
                 constants.CURRENT_PLANE_GAS = 100;
                 this.gas = 100;
-
                 console.log("current Lives : " + constants.CURRENT_PLANE_LIVES);
                 console.log("current Gas : " + constants.CURRENT_PLANE_GAS);
             }
-
-
-        }    
-
-        destroy() {
+        };
+        Scoreboard_L3.prototype.destroy = function () {
             game.removeChild(this.label);
-        }
-
-        drawHP(hp: number) {
-
+        };
+        Scoreboard_L3.prototype.drawBossHP = function (hp, x, y) {
+            game.removeChild(this.sqaureBossHp);
+            this.sqaureBossHp = new createjs.Shape();
+            this.sqaureBossHp.graphics.beginFill("red").drawRect(x, y, hp, 25);
+            constants.CURRENT_BOSS_HP = hp;
+            game.addChild(this.sqaureBossHp);
+        };
+        Scoreboard_L3.prototype.drawHP = function (hp) {
             switch (hp) {
                 case 100:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
-
-                case 99 :
-                case 98 :
-                case 97 :
-                case 96 :
-                case 95 :
-                case 94 :
+                case 99:
+                case 98:
+                case 97:
+                case 96:
+                case 95:
+                case 94:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas94");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
-                case 93 :
-                case 92 :
-                case 91 :
-                case 90 :
-                case 89 :
+                case 93:
+                case 92:
+                case 91:
+                case 90:
+                case 89:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas89");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
-                case 88 :
-                case 87 :
-                case 86 :
-                case 85 :
-                case 84 :
+                case 88:
+                case 87:
+                case 86:
+                case 85:
+                case 84:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas84");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
-                case 83 :
-                case 82 :
-                case 81 :
-                case 80 :
-                case 79 :
-                case 78 :
+                case 83:
+                case 82:
+                case 81:
+                case 80:
+                case 79:
+                case 78:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas78");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 77:
@@ -160,11 +126,9 @@ module objects {
                 case 74:
                 case 73:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas73");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 72:
@@ -173,11 +137,9 @@ module objects {
                 case 69:
                 case 68:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas68");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 67:
@@ -186,11 +148,9 @@ module objects {
                 case 64:
                 case 63:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas63");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 62:
@@ -200,11 +160,9 @@ module objects {
                 case 58:
                 case 57:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas57");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 56:
@@ -213,11 +171,9 @@ module objects {
                 case 53:
                 case 52:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas52");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 51:
@@ -226,11 +182,9 @@ module objects {
                 case 48:
                 case 47:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas47");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 46:
@@ -239,11 +193,9 @@ module objects {
                 case 43:
                 case 42:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas42");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 41:
@@ -253,11 +205,9 @@ module objects {
                 case 37:
                 case 36:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas36");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 35:
@@ -266,11 +216,9 @@ module objects {
                 case 32:
                 case 31:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas31");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 30:
@@ -279,11 +227,9 @@ module objects {
                 case 27:
                 case 26:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas26");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 25:
@@ -292,11 +238,9 @@ module objects {
                 case 22:
                 case 21:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas21");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 20:
@@ -306,11 +250,9 @@ module objects {
                 case 16:
                 case 15:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas15");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 14:
@@ -319,11 +261,9 @@ module objects {
                 case 11:
                 case 10:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas10");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 9:
@@ -332,11 +272,9 @@ module objects {
                 case 6:
                 case 5:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas5");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
                     break;
                 case 4:
@@ -345,18 +283,15 @@ module objects {
                 case 1:
                 case 0:
                     game.removeChild(this.sqaureGas);
-
                     this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas0");
                     this.sqaureGas.x = 100;
                     this.sqaureGas.y = 20;
-
                     game.addChild(this.sqaureGas);
-
                     break;
             }
-            
-
-
-        }
-    }
-} 
+        };
+        return Scoreboard_L3;
+    })();
+    objects.Scoreboard_L3 = Scoreboard_L3;
+})(objects || (objects = {}));
+//# sourceMappingURL=scoreboard.js.map

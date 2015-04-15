@@ -1,11 +1,11 @@
 /// <reference path="../objects/button.ts" />
-/// <reference path="../objects/planets.ts" />
+/// <reference path="../objects/level3/planets.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/ocean.ts" />
-/// <reference path="../objects/island.ts" />
-/// <reference path="../objects/plane.ts" />
+/// <reference path="../objects/level3/island.ts" />
+/// <reference path="../objects/level3/plane.ts" />
 /// <reference path="../objects/bullet.ts" />
-/// <reference path="../objects/scoreboard.ts" />
+/// <reference path="../objects/level3/scoreboard.ts" />
 /// <reference path="../objects/bossscoreboard.ts" />
 /// <reference path="../objects/boss.ts" />
 /// <reference path="../objects/superbullet.ts" />
@@ -37,7 +37,7 @@ var states;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
-        if (scoreboard.score > constants.POINT_SCORE) {
+        if (scoreboard.score > constants.POINT_SCORE + 1500) {
             stage.removeChild(game);
             for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 planets[count].destroy();
@@ -57,7 +57,7 @@ var states;
     function shoot() {
         if (!constants.IS_BULLET) {
             // Create multiple bullets
-            bullet = new objects.Bullet(stage, game, constants.PLAY_LEVEL3_STATE, plane);
+            bullet = new objects.Bullet(stage, game, plane, "bullet_L3");
             // Instantiate Collision Manager
             bulletCollision = new managers.bulletCollision(planets, scoreboard, bullet);
             constants.IS_BULLET = true;
@@ -70,18 +70,18 @@ var states;
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
         //island = new objects.Island(stage, game, currentState);
-        plane = new objects.Plane(stage, game, currentState);
+        plane = new objects.Plane_L3(stage, game);
         plane.image.addEventListener("click", shoot);
         // Show Cursor
         stage.cursor = "default";
         for (var count = constants.PLANET_NUM; count >= 0; count--) {
-            planets[count] = new objects.Planets(stage, game, currentState);
+            planets[count] = new objects.Planets_L3(stage, game);
         }
         for (var i = constants.ITEM_NUM; i >= 0; i--) {
-            items[i] = new objects.Island(stage, game, currentState);
+            items[i] = new objects.Island_L3(stage, game);
         }
         // Display Scoreboard
-        scoreboard = new objects.Scoreboard(stage, game);
+        scoreboard = new objects.Scoreboard_L3(stage, game);
         // Instantiate Collision Manager
         collision = new managers.Collision(plane, planets, scoreboard, items, currentState);
         stage.addChild(game);

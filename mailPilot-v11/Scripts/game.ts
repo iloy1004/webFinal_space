@@ -5,14 +5,28 @@
 /// <reference path="managers/bosscollision.ts" />
 /// <reference path="managers/bulletbosscollision.ts" />
 
-/// <reference path="objects/planets.ts" />
+/// <reference path="objects/level1/planets.ts" />
+/// <reference path="objects/level2/planets.ts" />
+/// <reference path="objects/level3/planets.ts" />
+
 /// <reference path="objects/bullet.ts" />
 /// <reference path="objects/button.ts" />
-/// <reference path="objects/island.ts" />
+
+/// <reference path="objects/level1/island.ts" />
+/// <reference path="objects/level2/island.ts" />
+/// <reference path="objects/level3/island.ts" />
+
 /// <reference path="objects/label.ts" />
 /// <reference path="objects/ocean.ts" />
-/// <reference path="objects/plane.ts" />
-/// <reference path="objects/scoreboard.ts" />
+
+/// <reference path="objects/level1/plane.ts" />
+/// <reference path="objects/level2/plane.ts" />
+/// <reference path="objects/level3/plane.ts" />
+
+/// <reference path="objects/level1/scoreboard.ts" />
+/// <reference path="objects/level2/scoreboard.ts" />
+/// <reference path="objects/level3/scoreboard.ts" />
+
 /// <reference path="objects/boss.ts" />
 /// <reference path="objects/superbullet.ts" />
 /// <reference path="objects/bossscoreboard.ts" />
@@ -42,6 +56,9 @@ var board: createjs.Container;
 
 var ocean: objects.Ocean;
 var plane: objects.Plane;
+var plane_L2: objects.Plane_L2;
+var plane_L3: objects.Plane_L3;
+
 //var island: objects.Island;
 //var bullet: objects.Bullet;
 var bullet: objects.Bullet;
@@ -50,7 +67,9 @@ var planets = []; // Clouds array;
 var poos = []; // poo array;
 var items = [];
 var scoreboard: objects.Scoreboard;
-var bossScore: objects.BossScoreboard;
+var scoreBoard_L2: objects.Scoreboard_L2;
+var scoreBoard_L3: objects.Scoreboard_L3;
+
 var bossBird: objects.Boss;
 
 var collision: managers.Collision;
