@@ -118,7 +118,6 @@ module objects {
         }
 
         drawBossHP(bosshp: number) {
-
             game.removeChild(this.sqaureBossHp);
 
             this.sqaureBossHp = new createjs.Shape();

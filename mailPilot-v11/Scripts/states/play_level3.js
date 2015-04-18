@@ -46,6 +46,7 @@ var states;
             constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
             constants.CURRENT_BULLETS = constants.BULLET_COUNT;
             constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
+            constants.CURRENT_BOSS_HP = constants.BOSS_HP;
             //plane_L2.engineSound.stop();
             currentState = constants.PLAY_BOSS;
             changeState(currentState);
