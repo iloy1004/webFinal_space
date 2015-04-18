@@ -7,7 +7,7 @@ var constants;
     constants.PLAY_LEVEL2_STATE = 3;
     constants.MENU_LEVEL3_STATE = 4;
     constants.PLAY_LEVEL3_STATE = 5;
-    constants.PLAY_BOSS = 6;
+    constants.PLAY_BOSS = 10;
     constants.HOME_STATE = 9;
     constants.GAME_OVER_STATE = 6;
     constants.MSG_STATE = 7;

@@ -15,8 +15,8 @@ module objects {
             this.stage = stage;
             this.game = game;
 
-                    this.image = new createjs.Sprite(managers.Assets.atlas_level1, "item1");
-                    this.image2 = new createjs.Sprite(managers.Assets.atlas_level1, "item2");
+            this.image = new createjs.Sprite(managers.Assets.atlas_all, "gas_item");
+            this.image2 = new createjs.Sprite(managers.Assets.atlas_level1, "item2");
 
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;

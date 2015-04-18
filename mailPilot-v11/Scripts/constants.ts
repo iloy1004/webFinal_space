@@ -6,9 +6,9 @@
     export var PLAY_LEVEL2_STATE: number = 3;
     export var MENU_LEVEL3_STATE: number = 4;
     export var PLAY_LEVEL3_STATE: number = 5;
-    export var PLAY_BOSS: number = 6
+    export var PLAY_BOSS: number = 10;
 
-    export var HOME_STATE: number = 9
+    export var HOME_STATE: number = 9;
 
     export var GAME_OVER_STATE: number = 6;
 

@@ -63,28 +63,16 @@ var managers;
             p3.y = item.image2.y;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (item.height / 2))) {
                 createjs.Sound.play("yay");
-                scoreboard.score += 100;
-                constants.CURRENT_SCORE += 100;
+                //get gas item
+                scoreboard.gas += 50;
+                constants.CURRENT_PLANE_GAS += 50;
                 item.reset(1);
             }
             if (this.distance(p1, p3) < ((this.plane.height / 2) + (item.height / 2))) {
                 createjs.Sound.play("yay");
-                if (currentState == constants.PLAY_LEVEL1_STATE) {
-                    scoreboard.score += 70;
-                    constants.CURRENT_SCORE += 70;
-                }
-                else {
-                    if (constants.CURRENT_PLANE_GAS >= 50) {
-                        constants.CURRENT_PLANE_GAS += 50;
-                        this.scoreboard.gas += 50;
-                        constants.CURRENT_PLANE_GAS += 100 - constants.CURRENT_PLANE_GAS;
-                        this.scoreboard.gas += 100 - this.scoreboard.gas;
-                    }
-                    else {
-                        constants.CURRENT_PLANE_GAS += 50;
-                        this.scoreboard.gas += 50;
-                    }
-                }
+                //get score item
+                scoreboard.score += 80;
+                constants.CURRENT_SCORE += 80;
                 item.reset(2);
             }
         };
