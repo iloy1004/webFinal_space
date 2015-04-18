@@ -27,7 +27,7 @@ module objects {
 
             game.addChild(this.image);
 
-            createjs.Sound.play("shot");
+            createjs.Sound.play("shot3");
         }
 
         update() {

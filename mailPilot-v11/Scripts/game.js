@@ -24,20 +24,20 @@
 /// <reference path="objects/level1/scoreboard.ts" />
 /// <reference path="objects/level2/scoreboard.ts" />
 /// <reference path="objects/level3/scoreboard.ts" />
+/// <reference path="objects/boss/scoreboard.ts" />
 /// <reference path="objects/boss.ts" />
 /// <reference path="objects/superbullet.ts" />
-/// <reference path="objects/poo.ts" />
-/// <reference path="states/play_level1.ts" />
-/// <reference path="states/play_level2.ts" />
-/// <reference path="states/play_level3.ts" />
-/// <reference path="states/gameover.ts" />
+/// <reference path="states/play_boss.ts" />
+/// <reference path="states/menu_home.ts" />
 /// <reference path="states/menu_level1.ts" />
 /// <reference path="states/menu_level2.ts" />
 /// <reference path="states/menu_level3.ts" />
-/// <reference path="states/menu_home.ts" />
+/// <reference path="states/play_level1.ts" />
+/// <reference path="states/play_level2.ts" />
+/// <reference path="states/play_level3.ts" />
 /// <reference path="states/instruction.ts" />
-/// <reference path="states/bossstage.ts" />
 /// <reference path="states/win.ts" />
+/// <reference path="states/gameover.ts" />
 // Mail Pilot Version 11 - Added basic state machine structure - Added Button and Label classes
 // Changed online repo
 var canvas;
@@ -53,12 +53,12 @@ var plane_L3;
 var bullet;
 var isBullet;
 var planets = []; // Clouds array;
-var poos = []; // poo array;
 var items = [];
 var scoreboard;
 var scoreBoard_L2;
 var scoreBoard_L3;
-var bossBird;
+var scoreBoard_Boss;
+var boss;
 var collision;
 var collision_L2;
 var collision_L3;
@@ -136,6 +136,10 @@ function changeState(state) {
             // instantiate play screen
             currentStateFunction = states.play3State;
             states.play3();
+            break;
+        case constants.PLAY_BOSS:
+            currentStateFunction = states.playBossState;
+            states.playBoss();
             break;
         case constants.GAME_OVER_STATE:
             currentStateFunction = states.gameOverState;

@@ -1,4 +1,5 @@
 ﻿/// <reference path="../managers/asset.ts" />
+
 module objects {
     // Ocean Class
     export class Ocean {
@@ -27,16 +28,10 @@ module objects {
             if (this.image.x >= 0) {
                 this.reset();
             }
-
-            //this.image.y += this.dy;
-            //if (this.image.y >= 0) {
-                //this.reset();
-            //}
         }
 
         reset() {
             this.image.x = -1200;
-            //this.image.y = -960;
         }
 
         destroy() {

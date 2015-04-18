@@ -40,10 +40,11 @@ var states;
             for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 planets[count].destroy();
             }
-            constants.CURRENT_SCORE = scoreboard.score;
-            constants.CURRENT_PLANE_GAS = scoreboard.gas;
-            scoreBoard_L2.bullets = constants.CURRENT_BULLETS;
-            plane_L2.engineSound.stop();
+            constants.CURRENT_SCORE = scoreBoard_L2.score;
+            constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
+            constants.CURRENT_BULLETS = constants.BULLET_COUNT;
+            constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
+            //plane_L2.engineSound.stop();
             currentState = constants.MENU_LEVEL3_STATE;
             changeState(currentState);
         }

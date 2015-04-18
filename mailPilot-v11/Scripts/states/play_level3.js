@@ -12,6 +12,7 @@
 /// <reference path="../managers/collision.ts" />
 /// <reference path="../managers/bulletcollision_l3.ts" />
 /// <reference path="../managers/bosscollision.ts" />
+/// <reference path="../managers/bulletbosscollision.ts" />
 var states;
 (function (states) {
     function play3State() {
@@ -41,10 +42,12 @@ var states;
             for (var count = constants.PLANET_NUM; count >= 0; count--) {
                 planets[count].destroy();
             }
-            constants.CURRENT_SCORE = scoreBoard_L3.score;
-            constants.CURRENT_PLANE_GAS = scoreBoard_L3.gas;
-            plane_L3.engineSound.stop();
-            currentState = constants.WIN_STATE;
+            constants.CURRENT_SCORE = scoreBoard_L2.score;
+            constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
+            constants.CURRENT_BULLETS = constants.BULLET_COUNT;
+            constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
+            //plane_L2.engineSound.stop();
+            currentState = constants.PLAY_BOSS;
             changeState(currentState);
         }
         if (constants.IS_BULLET) {

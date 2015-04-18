@@ -6,12 +6,10 @@ var managers;
 (function (managers) {
     // Collision Manager Class
     var bossCollision = (function () {
-        function bossCollision(plane, boss, poos, scoreboard) {
-            this.poos = [];
+        function bossCollision(plane, boss, scoreboard) {
             this.boss = boss;
             this.scoreboard = scoreboard;
             this.plane = plane;
-            this.poos = poos;
         }
         // Utility method - Distance calculation between two points
         bossCollision.prototype.distance = function (p1, p2) {
@@ -24,20 +22,6 @@ var managers;
             yPoints = yPoints * yPoints;
             result = Math.sqrt(xPoints + yPoints);
             return result;
-        };
-        // check collision between plane and any cloud object
-        bossCollision.prototype.planeAndPoo = function (poo) {
-            var p1 = new createjs.Point();
-            var p2 = new createjs.Point();
-            p1.x = this.plane.image.x;
-            p1.y = this.plane.image.y;
-            p2.x = poo.image.x;
-            p2.y = poo.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (poo.height / 2))) {
-                createjs.Sound.play("thunder");
-                this.scoreboard.gas -= 5;
-                poo.reset();
-            }
         };
         // check collision between bullet and cloud
         bossCollision.prototype.planeAndBoss = function (boss, plane) {
@@ -54,9 +38,6 @@ var managers;
         };
         // Utility Function to Check Collisions
         bossCollision.prototype.update = function () {
-            for (var count = constants.POO_NUM; count >= 0; count--) {
-                this.planeAndPoo(this.poos[count]);
-            }
             this.planeAndBoss(this.boss, this.plane);
         };
         return bossCollision;

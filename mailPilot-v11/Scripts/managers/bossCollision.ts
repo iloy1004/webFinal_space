@@ -13,14 +13,12 @@ module managers {
         // class variables
         private boss: objects.Boss;
         private plane: objects.Plane_L3;
-        private poos = [];
-        private scoreboard: objects.Scoreboard_L3;
+        private scoreboard: objects.Scoreboard_Boss;
 
-        constructor(plane: objects.Plane_L3, boss: objects.Boss, poos, scoreboard: objects.Scoreboard_L3) {
+        constructor(plane: objects.Plane_L3, boss: objects.Boss, scoreboard: objects.Scoreboard_Boss) {
             this.boss = boss;
             this.scoreboard = scoreboard;
             this.plane = plane;
-            this.poos = poos;
         }
 
         // Utility method - Distance calculation between two points
@@ -40,20 +38,6 @@ module managers {
             return result;
         }
 
-        // check collision between plane and any cloud object
-        private planeAndPoo(poo: objects.Poo) {
-            var p1: createjs.Point = new createjs.Point();
-            var p2: createjs.Point = new createjs.Point();
-            p1.x = this.plane.image.x;
-            p1.y = this.plane.image.y;
-            p2.x = poo.image.x;
-            p2.y = poo.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (poo.height / 2))) {
-                createjs.Sound.play("thunder");
-                this.scoreboard.gas -= 5;
-                poo.reset();
-            }
-        }
 
         // check collision between bullet and cloud
         private planeAndBoss(boss: objects.Boss, plane: objects.Plane) {
@@ -75,11 +59,6 @@ module managers {
 
         // Utility Function to Check Collisions
         update() {
-
-            for (var count = constants.POO_NUM; count >= 0; count--) {
-                this.planeAndPoo(this.poos[count]);
-            }
-
             this.planeAndBoss(this.boss, this.plane);
         }
     }

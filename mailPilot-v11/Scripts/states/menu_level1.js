@@ -5,7 +5,7 @@
 /// <reference path="../objects/label.ts" />
 var states;
 (function (states) {
-    function playButtonClicked(event) {
+    function play1ButtonClicked(event) {
         stage.removeChild(game);
         //plane.destroy();
         game.removeAllChildren();
@@ -13,11 +13,11 @@ var states;
         constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
         constants.CURRENT_BULLETS = constants.BULLET_COUNT;
         constants.CURRENT_SCORE = 0;
-        constants.engineSound.stop();
+        //constants.engineSound.stop();
         currentState = constants.PLAY_LEVEL1_STATE;
         changeState(currentState);
     }
-    states.playButtonClicked = playButtonClicked;
+    states.play1ButtonClicked = play1ButtonClicked;
     function exitButtonClicked(event) {
         stage.removeChild(game);
         //plane.destroy();
@@ -30,31 +30,36 @@ var states;
     states.exitButtonClicked = exitButtonClicked;
     function menuState() {
         ocean.update();
-        //plane.update();
     }
     states.menuState = menuState;
     function menu() {
         var gameNameLabel;
         // Declare new Game Container
         game = new createjs.Container();
+        board = new createjs.Container();
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
         //plane = new objects.Plane(stage, game);
         // Show Cursor
         stage.cursor = "default";
         //sound create
-        constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        //constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
         // Display Game Over
         gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Space War Z");
         game.addChild(gameNameLabel);
+        var boardImg = new createjs.Sprite(managers.Assets.atlas_level1, "board");
+        boardImg.x = 366;
+        boardImg.y = 150;
+        board.addChild(boardImg);
         // Display Play Again Button
-        playButton = new objects.Button(stage.canvas.width / 2, 250, "playButton", currentState);
-        game.addChild(playButton);
-        playButton.addEventListener("click", playButtonClicked);
+        playButton = new objects.Button(450, 350, "playBtn", currentState);
+        board.addChild(playButton);
+        playButton.addEventListener("click", play1ButtonClicked);
         // Display Play Again Button
-        msgButton = new objects.Button(stage.canvas.width / 2, 330, "instructionsButton", currentState);
-        game.addChild(msgButton);
-        msgButton.addEventListener("click", states.msgButtonClicked);
+        msgButton = new objects.Button(450, 400, "exitBtn", currentState);
+        board.addChild(msgButton);
+        msgButton.addEventListener("click", exitButtonClicked);
+        game.addChild(board);
         stage.addChild(game);
     }
     states.menu = menu;

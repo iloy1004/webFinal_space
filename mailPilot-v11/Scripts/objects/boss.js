@@ -28,6 +28,7 @@ var objects;
             this.image.regY = this.height / 2;
             this.reset();
             game.addChild(this.image);
+            constants.engineSound.stop();
             this.engineSound = createjs.Sound.play('bossBGM', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
         }
         Boss.prototype.update = function () {

@@ -13,6 +13,8 @@ var objects;
         function Button(x, y, buttonIDString, currentStage) {
             switch (currentStage) {
                 case constants.HOME_STATE:
+                    _super.call(this, managers.Assets.atlas_board, buttonIDString);
+                    break;
                 case constants.MENU_LEVEL1_STATE:
                     _super.call(this, managers.Assets.atlas_level1, buttonIDString);
                     break;
@@ -21,6 +23,9 @@ var objects;
                     break;
                 case constants.MENU_LEVEL3_STATE:
                     _super.call(this, managers.Assets.atlas_level3, buttonIDString);
+                    break;
+                default:
+                    _super.call(this, managers.Assets.atlas_board, buttonIDString);
                     break;
             }
             this.regX = this.getBounds().width / 2;

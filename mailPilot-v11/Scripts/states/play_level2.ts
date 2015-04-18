@@ -61,12 +61,12 @@ module states {
                 planets[count].destroy();
             }
 
-            constants.CURRENT_SCORE = scoreboard.score;
-            constants.CURRENT_PLANE_GAS = scoreboard.gas;
+            constants.CURRENT_SCORE = scoreBoard_L2.score;
+            constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
+            constants.CURRENT_BULLETS = constants.BULLET_COUNT;
+            constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
 
-            scoreBoard_L2.bullets = constants.CURRENT_BULLETS;
-
-            plane_L2.engineSound.stop();
+            //plane_L2.engineSound.stop();
 
             currentState = constants.MENU_LEVEL3_STATE;
             changeState(currentState);

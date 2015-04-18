@@ -18,14 +18,9 @@ var objects;
             if (this.image.x >= 0) {
                 this.reset();
             }
-            //this.image.y += this.dy;
-            //if (this.image.y >= 0) {
-            //this.reset();
-            //}
         };
         Ocean.prototype.reset = function () {
             this.image.x = -1200;
-            //this.image.y = -960;
         };
         Ocean.prototype.destroy = function () {
             game.removeChild(this.image);

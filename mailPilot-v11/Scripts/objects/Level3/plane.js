@@ -51,9 +51,12 @@ var objects;
                     controls.down = true;
                     break;
                 case keys.Z:
-                    constants.CURRENT_PLANE_GAS = 20000;
-                    constants.CURRENT_PLANE_LIVES = 1000;
-                    constants.CURRENT_BULLETS = 1000;
+                    constants.PLANE_GAS = 20000;
+                    constants.PLANE_LIVES = 1000;
+                    constants.BULLET_COUNT = 1000;
+                    constants.CURRENT_BULLETS = constants.BULLET_COUNT;
+                    constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
+                    constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
                     break;
             }
         };

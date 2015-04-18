@@ -11,39 +11,40 @@ var objects;
             this.gas = constants.CURRENT_PLANE_GAS;
             this.lives = constants.CURRENT_PLANE_LIVES;
             this.bullets = constants.CURRENT_BULLETS;
-            this.boss_hp = constants.CURRENT_BOSS_HP;
-            this.score = 0;
+            this.score = constants.CURRENT_SCORE;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.ScoreLabel = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
             this.update();
             // drawing hp
             this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
+            this.sqaureGas.x = 250;
+            this.sqaureGas.y = 100;
             this.livesImg = new createjs.Sprite(managers.Assets.atlas_all, "lifes");
-            this.livesImg.x = 380;
-            this.livesImg.y = 35;
-            //drawing boss's hp
-            this.sqaureBossHp = new createjs.Shape();
-            this.sqaureBossHp.graphics.beginFill("red").drawRect(110, 35, 100, 25);
+            this.livesImg.x = 330;
+            this.livesImg.y = 30;
             //bullet image
             this.bulletImg = new createjs.Sprite(managers.Assets.atlas_all, "bullets_counter");
-            this.bulletImg.x = 650;
-            this.bulletImg.y = 20;
+            this.bulletImg.x = 610;
+            this.bulletImg.y = 10;
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
             game.addChild(this.livesImg);
             game.addChild(this.sqaureGas);
             game.addChild(this.bulletImg);
-            game.addChild(this.sqaureBossHp);
             game.addChild(this.label);
+            game.addChild(this.ScoreLabel);
+            game.addChild(this.bossLabel);
         }
         Scoreboard_L3.prototype.update = function () {
             this.gas = constants.CURRENT_PLANE_GAS;
             this.gas -= 0.05;
             this.bullets = constants.CURRENT_BULLETS;
-            var currentBossHP = (this.boss_hp / constants.BOSS_HP) * 100;
-            this.labelText = "* HP:          * Lives   : " + this.lives.toString() + "  * Bullets    : " + this.bullets.toString() + "  * Score: " + this.score.toString() + " * Boss's HP";
-            this.drawBossHP(currentBossHP, 470, 35);
+            this.labelText = " Gas:          Lives  : " + this.lives.toString() + "   Bullets    : " + this.bullets.toString();
             this.label.text = this.labelText;
-            this.label.y = 20;
+            this.label.y = 10;
+            this.labelText = " Score: " + this.score.toString();
+            this.ScoreLabel.text = this.labelText;
+            this.ScoreLabel.y = 480;
             this.drawHP(Math.floor(this.gas));
             constants.CURRENT_PLANE_GAS = Math.floor(this.gas);
             if (constants.CURRENT_PLANE_GAS == 0 && constants.CURRENT_PLANE_LIVES >= 1) {
@@ -57,13 +58,6 @@ var objects;
         };
         Scoreboard_L3.prototype.destroy = function () {
             game.removeChild(this.label);
-        };
-        Scoreboard_L3.prototype.drawBossHP = function (hp, x, y) {
-            game.removeChild(this.sqaureBossHp);
-            this.sqaureBossHp = new createjs.Shape();
-            this.sqaureBossHp.graphics.beginFill("red").drawRect(x, y, hp, 25);
-            constants.CURRENT_BOSS_HP = hp;
-            game.addChild(this.sqaureBossHp);
         };
         Scoreboard_L3.prototype.drawHP = function (hp) {
             switch (hp) {

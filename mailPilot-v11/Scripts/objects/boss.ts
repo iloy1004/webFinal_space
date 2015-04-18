@@ -41,6 +41,7 @@ module objects {
 
             game.addChild(this.image);
 
+            constants.engineSound.stop();
             this.engineSound = createjs.Sound.play('bossBGM', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
         }
 

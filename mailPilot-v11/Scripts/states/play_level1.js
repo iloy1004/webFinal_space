@@ -40,7 +40,9 @@ var states;
                 planets[count].destroy();
             }
             constants.CURRENT_SCORE = scoreboard.score;
-            constants.CURRENT_PLANE_GAS = scoreboard.gas;
+            constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
+            constants.CURRENT_BULLETS = constants.BULLET_COUNT;
+            constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
             plane.engineSound.stop();
             currentState = constants.MENU_LEVEL2_STATE;
             changeState(currentState);

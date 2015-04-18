@@ -4,15 +4,14 @@ var managers;
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.gif" },
         { id: "sky", src: "assets/images/background.png" },
-        { id: "engine1", src: "assets/sounds/background_1.mp3" },
-        { id: "playBGM1", src: "assets/sounds/playBGM.mp3" },
-        { id: "thunder1", src: "assets/sounds/shot2.wav" },
-        { id: "yay1", src: "assets/sounds/Powerup.wav" },
-        { id: "shot1", src: "assets/sounds/shot.wav" },
-        { id: "bossBGM1", src: "assets/sounds/bossBGM.mp3" },
-        { id: "win1", src: "assets/sounds/win.mp3" },
-        { id: "lose1", src: "assets/sounds/lose.mp3" },
-        { id: "game-over1", src: "assets/sounds/game-over.wav" }
+        { id: "engine", src: "assets/sounds/background_1.mp3" },
+        { id: "thunder", src: "assets/sounds/hit_enemy.mp3" },
+        { id: "yay", src: "assets/sounds/get_item.mp3" },
+        { id: "shot2", src: "assets/sounds/laserL2.mp3" },
+        { id: "shot3", src: "assets/sounds/weaponL3.mp3" },
+        { id: "bossBGM", src: "assets/sounds/bossBGM.mp3" },
+        { id: "win", src: "assets/sounds/win.mp3" },
+        { id: "game-over", src: "assets/sounds/gameOver.mp3" }
     ];
     var atlas_allData = {
         "images": ["assets/images/atlas_all.png"],
@@ -173,9 +172,9 @@ var managers;
             [20, 14, 319, 114],
             [17, 143, 319, 114],
             [17, 271, 319, 114],
-            [57, 438, 121, 201],
-            [56, 696, 121, 201],
-            [56, 950, 121, 201],
+            [57, 438, 212, 201],
+            [56, 696, 212, 201],
+            [56, 950, 212, 201],
             [330, 384, 144, 56],
             [331, 446, 144, 56],
             [330, 509, 144, 56],
@@ -222,6 +221,35 @@ var managers;
             "exitBtn": [32]
         }
     };
+    var atlas_BoardData = {
+        "images": ["assets/images/boards.png"],
+        "frames": [
+            [20, 10, 469, 310],
+            [78, 246, 143, 41],
+            [301, 247, 143, 41],
+            [22, 336, 468, 309],
+            [199, 454, 121, 47],
+            [164, 521, 191, 48],
+            [21, 665, 468, 311],
+            [71, 900, 143, 42],
+            [295, 900, 142, 40],
+            [514, 13, 463, 311],
+            [798, 239, 144, 41],
+        ],
+        "animations": {
+            "OverBrd": [0],
+            "againBtn": [1],
+            "exitBtn": [2],
+            "mainBrd": [3],
+            "startBtn": [4],
+            "instBtn": [5],
+            "winBrd": [6],
+            "homeBtn": [7],
+            "exit1Btn": [8],
+            "instBrd": [9],
+            "home1Btn": [10]
+        }
+    };
     // Asset Manager Class
     var Assets = (function () {
         function Assets() {
@@ -235,6 +263,7 @@ var managers;
             this.atlas_level1 = new createjs.SpriteSheet(atlas_Level1Data);
             this.atlas_level2 = new createjs.SpriteSheet(atlas_Level2Data);
             this.atlas_level3 = new createjs.SpriteSheet(atlas_Level3Data);
+            this.atlas_board = new createjs.SpriteSheet(atlas_BoardData);
         };
         return Assets;
     })();

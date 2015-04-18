@@ -12,7 +12,7 @@ var states;
         game.removeAllEventListeners();
         constants.CURRENT_PLANE_LIVES = constants.PLANE_LIVES;
         constants.CURRENT_PLANE_GAS = constants.PLANE_GAS;
-        constants.engineSound.stop();
+        //constants.engineSound.stop();
         currentState = constants.PLAY_LEVEL2_STATE;
         changeState(currentState);
     }
@@ -33,22 +33,20 @@ var states;
         // Show Cursor
         stage.cursor = "default";
         //sound create
-        constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        //constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
         // Display Game Over
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Adventure Time");
+        gameNameLabel = new objects.Label(stage.canvas.width / 2, 60, "Space War Z");
         game.addChild(gameNameLabel);
         var boardImg = new createjs.Sprite(managers.Assets.atlas_level2, "board");
-        boardImg.x = 260;
-        boardImg.y = 140;
+        boardImg.x = 366;
+        boardImg.y = 150;
         board.addChild(boardImg);
         // Display Play Again Button
-        playButton = new objects.Button(345, 342, "playBtn", currentState);
-        //game.addChild(playButton);
+        playButton = new objects.Button(450, 350, "playBtn", currentState);
         board.addChild(playButton);
         playButton.addEventListener("click", play2ButtonClicked);
         // Display Play Again Button
-        exitButton = new objects.Button(stage.canvas.width / 2, 330, "exitBtn", currentState);
-        //game.addChild(playButton);
+        exitButton = new objects.Button(450, 400, "exitBtn", currentState);
         board.addChild(exitButton);
         exitButton.addEventListener("click", states.exitButtonClicked);
         game.addChild(board);

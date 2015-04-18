@@ -18,6 +18,7 @@ module states {
 
         // Declare new Game Container
         game = new createjs.Container();
+        board = new createjs.Container();
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
@@ -33,28 +34,29 @@ module states {
         game.addChild(gameOverLabel);
 
         // Display Final Score Label
-        finalScoreLabel = new objects.Label(stage.canvas.width / 2, 120, "FINAL SCORE");
+        finalScoreLabel = new objects.Label(stage.canvas.width / 2, 90, "FINAL SCORE");
         game.addChild(finalScoreLabel);
 
         // Display Final Score
-        finalScore = new objects.Label(stage.canvas.width / 2, 160, scoreBoard_L3.score.toString());
+        finalScore = new objects.Label(stage.canvas.width / 2, 130, scoreBoard_L3.score.toString());
         game.addChild(finalScore);
 
-        // Display Try Again Button
-        tryAgain = new objects.Button(stage.canvas.width / 2, 280, "tryAgainButton", currentState);
-        game.addChild(tryAgain);
-        tryAgain.addEventListener("click", tryAgainClicked);
+        var boardImg = new createjs.Sprite(managers.Assets.atlas_board, "winBrd");
+        boardImg.x = 366;
+        boardImg.y = 170;
+        board.addChild(boardImg);
 
         // Display Try Again Button
-        backButton = new objects.Button(stage.canvas.width / 2, 360, "backButton", currentState);
-        game.addChild(backButton);
-        backButton.addEventListener("click", backClicked);
+        tryAgain = new objects.Button(486, 426, "homeBtn", currentState);
+        board.addChild(tryAgain);
+        tryAgain.addEventListener("click", exitButtonClicked);
 
-        // Display Play Again Button
-        msgButton = new objects.Button(stage.canvas.width / 2, 430, "instructionsButton", currentState);
-        game.addChild(msgButton);
-        msgButton.addEventListener("click", msgButtonClicked);
+        // Display Try Again Button
+        backButton = new objects.Button(711, 427, "exitBtn", currentState);
+        board.addChild(backButton);
+        backButton.addEventListener("click", exitButtonClicked);
 
+        game.addChild(board);
         stage.addChild(game);
 
     }

@@ -2,7 +2,7 @@
 
 module objects {
     // Scoreboard Class
-    export class Scoreboard {
+    export class Scoreboard_Boss {
         stage: createjs.Stage;
         game: createjs.Container;
         sqaureGas: createjs.Sprite;
@@ -11,12 +11,17 @@ module objects {
         gas: number;
         lives: number;
         score: number;
+        bullets: number;
         label: createjs.Text;
-        scoreLabel: createjs.Text;
+        ScoreLabel: createjs.Text;
+        bossLabel: createjs.Text;
         labelText: string = "";
         width: number;
         height: number;
-
+        currentHP: number;
+        currentBossHP: number;
+        boss_hp: number;
+        sqaureBossHp = new createjs.Shape();
         
 
         constructor(stage: createjs.Stage, game: createjs.Container) {
@@ -24,29 +29,44 @@ module objects {
             this.game = game;
             this.gas = constants.CURRENT_PLANE_GAS;
             this.lives = constants.CURRENT_PLANE_LIVES;
-            this.score = 0;
+            this.bullets = constants.CURRENT_BULLETS;
+            this.boss_hp = constants.BOSS_HP;
+            this.currentBossHP = constants.CURRENT_BOSS_HP;
+            this.score = constants.CURRENT_SCORE;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
-            this.scoreLabel = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.ScoreLabel = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.bossLabel = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
 
             this.update();
 
             // drawing hp
             this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
-            this.sqaureGas.x = 250;
-            this.sqaureGas.y = 100;
+            this.sqaureGas.x = 100;
+            this.sqaureGas.y = 30;
+
             this.livesImg = new createjs.Sprite(managers.Assets.atlas_all, "lifes");
             this.livesImg.x = 330;
             this.livesImg.y = 30;
 
+            //drawing boss's hp
+            this.sqaureBossHp = new createjs.Shape();
+            this.sqaureBossHp.graphics.beginFill("red").drawRect(1020, 490, 100, 25);
+
+            //bullet image
+            this.bulletImg = new createjs.Sprite(managers.Assets.atlas_all, "bullets_counter");
+            this.bulletImg.x = 610;
+            this.bulletImg.y = 10;
             
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
 
             game.addChild(this.livesImg);
             game.addChild(this.sqaureGas);
-            
+            game.addChild(this.bulletImg);
+            game.addChild(this.sqaureBossHp);
             game.addChild(this.label);
-            game.addChild(this.scoreLabel);
+            game.addChild(this.ScoreLabel);
+            game.addChild(this.bossLabel);
             
         }
 
@@ -55,15 +75,26 @@ module objects {
             this.gas = constants.CURRENT_PLANE_GAS;
             this.gas -= 0.05;
 
-            this.labelText = " Gas:          Lives   : " + this.lives.toString();
+            this.bullets = constants.CURRENT_BULLETS;
+
+            var BossHP = (this.currentBossHP / this.boss_hp) * 100;
+
+            this.labelText = " Gas:          Lives  : " + this.lives.toString() + "   Bullets    : " + this.bullets.toString();
 
             this.label.text = this.labelText;
             this.label.y = 10;
 
             this.labelText = " Score: " + this.score.toString();
-            this.scoreLabel.text = this.labelText;
-            //this.scoreLabel.x = stage.canvas.width / 2 - 150;
-            this.scoreLabel.y = 480;
+            this.ScoreLabel.text = this.labelText;
+            this.ScoreLabel.y = 480;
+
+            this.labelText = " Boss's HP: ";
+            this.bossLabel.text = this.labelText;
+            this.bossLabel.x = 800;
+            this.bossLabel.y = 480;
+
+            this.drawBossHP(BossHP);
+
 
             this.drawHP(Math.floor(this.gas));
             
@@ -84,6 +115,19 @@ module objects {
 
         destroy() {
             game.removeChild(this.label);
+        }
+
+        drawBossHP(bosshp: number) {
+
+            game.removeChild(this.sqaureBossHp);
+
+            this.sqaureBossHp = new createjs.Shape();
+            this.sqaureBossHp.graphics.beginFill("red").drawRect(1020, 490, bosshp, 25);
+
+            constants.CURRENT_BOSS_HP = bosshp;
+            console.log("current boss's hp : " + bosshp);
+
+            game.addChild(this.sqaureBossHp);
         }
 
         drawHP(hp: number) {

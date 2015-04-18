@@ -3,8 +3,8 @@
 /// <reference path="../objects/level3/planets.ts" />
 
 /// <reference path="../objects/level3/bullet_l3.ts" />
+/// <reference path="../objects/boss/scoreboard.ts" />
 
-/// <reference path="../objects/level3/scoreboard.ts" />
 
 
 
@@ -15,14 +15,13 @@ module managers {
         // class variables
         private bullet: objects.Bullet;
         private boss: objects.Boss;
-        private scoreboard: objects.Scoreboard_L3;
-        private poos = [];
+        private scoreboard: objects.Scoreboard_Boss;
 
-        constructor(boss: objects.Boss, scoreboard: objects.Scoreboard_L3, bullet: objects.Bullet, poos) {
+
+        constructor(boss: objects.Boss, scoreboard: objects.Scoreboard_Boss, bullet: objects.Bullet) {
             this.scoreboard = scoreboard;
             this.bullet = bullet;
             this.boss = boss;
-            this.poos = poos;
         }
 
         // Utility method - Distance calculation between two points
@@ -56,7 +55,8 @@ module managers {
             if (this.distance(p1, p2) < ((bullet.height / 2) + (boss.height / 2))) {
                 createjs.Sound.play("shot");
                 this.scoreboard.score += 50;
-                this.scoreboard.boss_hp -= 100;
+                this.scoreboard.currentBossHP -= 100;
+                constants.CURRENT_BOSS_HP -= 100;
                 //bullet.reset();
                 game.removeChild(bullet.image);
                 constants.IS_BULLET = false;
@@ -64,33 +64,10 @@ module managers {
             }
         }
 
-        // check collision between bullet and cloud
-        private bulletAndPoo(poo: objects.Poo, bullet: objects.Bullet) {
-            var p1: createjs.Point = new createjs.Point();
-            var p2: createjs.Point = new createjs.Point();
-
-            p1.x = bullet.image.x;
-            p1.y = bullet.image.y;
-
-            p2.x = poo.image.x;
-            p2.y = poo.image.y;
-
-            if (this.distance(p1, p2) < ((bullet.height / 2) + (poo.height / 2))) {
-                createjs.Sound.play("shot");
-                this.scoreboard.score += 50;
-                //bullet.reset();
-                game.removeChild(bullet.image);
-                constants.IS_BULLET = false;
-                poo.reset();
-            }
-        }
 
         // Utility Function to Check Collisions
         update() {
             this.bulletAndBoss(this.boss, this.bullet);
-            for (var i = constants.POO_NUM; i >= 0; i--) {
-                this.bulletAndPoo(this.poos[i], this.bullet);
-            }
         }
     }
 } 

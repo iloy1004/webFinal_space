@@ -33,24 +33,27 @@
 /// <reference path="objects/level2/scoreboard.ts" />
 /// <reference path="objects/level3/scoreboard.ts" />
 
+/// <reference path="objects/boss/scoreboard.ts" />
+
 /// <reference path="objects/boss.ts" />
 /// <reference path="objects/superbullet.ts" />
 
-/// <reference path="objects/poo.ts" />
+/// <reference path="states/play_boss.ts" />
 
+
+/// <reference path="states/menu_home.ts" />
+
+/// <reference path="states/menu_level1.ts" />
+/// <reference path="states/menu_level2.ts" />
+/// <reference path="states/menu_level3.ts" />
 /// <reference path="states/play_level1.ts" />
 /// <reference path="states/play_level2.ts" />
 /// <reference path="states/play_level3.ts" />
 
-/// <reference path="states/gameover.ts" />
-/// <reference path="states/menu_level1.ts" />
-/// <reference path="states/menu_level2.ts" />
-/// <reference path="states/menu_level3.ts" />
-/// <reference path="states/menu_home.ts" />
-
 /// <reference path="states/instruction.ts" />
-/// <reference path="states/bossstage.ts" />
+
 /// <reference path="states/win.ts" />
+/// <reference path="states/gameover.ts" />
 
 // Mail Pilot Version 11 - Added basic state machine structure - Added Button and Label classes
 // Changed online repo
@@ -70,17 +73,18 @@ var plane_L3: objects.Plane_L3;
 var bullet: objects.Bullet;
 var isBullet: boolean;
 var planets = []; // Clouds array;
-var poos = []; // poo array;
 var items = [];
 var scoreboard: objects.Scoreboard;
 var scoreBoard_L2: objects.Scoreboard_L2;
 var scoreBoard_L3: objects.Scoreboard_L3;
+var scoreBoard_Boss: objects.Scoreboard_Boss;
 
-var bossBird: objects.Boss;
+var boss: objects.Boss;
 
 var collision: managers.Collision;
 var collision_L2: managers.Collision_L2;
 var collision_L3: managers.Collision_L3;
+
 var bossCollision: managers.bossCollision;
 var bulletCollision_L2: managers.bulletCollision_L2;
 var bulletColletion_L3: managers.bulletCollision_L3;
@@ -174,6 +178,10 @@ function changeState(state: number): void {
             states.play3();
             break;
 
+        case constants.PLAY_BOSS:
+            currentStateFunction = states.playBossState;
+            states.playBoss();
+            break;
 
         case constants.GAME_OVER_STATE:
             currentStateFunction = states.gameOverState;

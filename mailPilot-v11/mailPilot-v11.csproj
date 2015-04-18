@@ -70,6 +70,7 @@
     <Content Include="assets\images\atlas_level2.png" />
     <Content Include="assets\images\atlas_level3.png" />
     <Content Include="assets\images\background.png" />
+    <Content Include="assets\images\boards.png" />
     <Content Include="assets\images\enemyBot_03.png" />
     <Content Include="assets\images\enemyBot_04.png" />
     <Content Include="assets\images\ourShip.png" />
@@ -83,14 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\sounds\background_1.mp3" />
-    <Content Include="assets\sounds\bgm.mp3" />
     <Content Include="assets\sounds\bossBGM.mp3" />
-    <Content Include="assets\sounds\game-over.wav" />
-    <Content Include="assets\sounds\lose.mp3" />
-    <Content Include="assets\sounds\playBGM.mp3" />
-    <Content Include="assets\sounds\Powerup.wav" />
-    <Content Include="assets\sounds\shot.wav" />
-    <Content Include="assets\sounds\shot2.wav" />
+    <Content Include="assets\sounds\gameOver.mp3" />
+    <Content Include="assets\sounds\get_item.mp3" />
+    <Content Include="assets\sounds\hit_enemy.mp3" />
+    <Content Include="assets\sounds\laserL2.mp3" />
+    <Content Include="assets\sounds\weaponL3.mp3" />
     <Content Include="assets\sounds\win.mp3" />
     <Content Include="css\app.css" />
     <Content Include="css\normalize.css" />
@@ -136,6 +135,7 @@
     <TypeScriptCompile Include="Scripts\managers\collision_L2.ts" />
     <TypeScriptCompile Include="Scripts\managers\collision.ts" />
     <TypeScriptCompile Include="Scripts\objects\boss.ts" />
+    <TypeScriptCompile Include="Scripts\objects\Boss\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\Level3\bullet_L3.ts" />
     <TypeScriptCompile Include="Scripts\objects\Level3\BossScoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\Level2\bullet_L2.ts" />
@@ -158,13 +158,13 @@
     <TypeScriptCompile Include="Scripts\lib\preloadjs.d.ts" />
     <TypeScriptCompile Include="Scripts\lib\soundjs.d.ts" />
     <TypeScriptCompile Include="Scripts\objects\superBullet.ts" />
-    <TypeScriptCompile Include="Scripts\states\bossStage.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
     <TypeScriptCompile Include="Scripts\states\instruction.ts" />
     <TypeScriptCompile Include="Scripts\states\menu_home.ts" />
     <TypeScriptCompile Include="Scripts\states\menu_level3.ts" />
     <TypeScriptCompile Include="Scripts\states\menu_level2.ts" />
     <TypeScriptCompile Include="Scripts\states\menu_level1.ts" />
+    <TypeScriptCompile Include="Scripts\states\play_boss.ts" />
     <TypeScriptCompile Include="Scripts\states\play_level3.ts" />
     <TypeScriptCompile Include="Scripts\states\play_level2.ts" />
     <TypeScriptCompile Include="Scripts\states\play_level1.ts" />

@@ -1,17 +1,15 @@
 /// <reference path="../objects/level3/plane.ts" />
 /// <reference path="../objects/level3/planets.ts" />
 /// <reference path="../objects/level3/bullet_l3.ts" />
-/// <reference path="../objects/level3/scoreboard.ts" />
+/// <reference path="../objects/boss/scoreboard.ts" />
 var managers;
 (function (managers) {
     // Collision Manager Class
     var bulletBossCollision = (function () {
-        function bulletBossCollision(boss, scoreboard, bullet, poos) {
-            this.poos = [];
+        function bulletBossCollision(boss, scoreboard, bullet) {
             this.scoreboard = scoreboard;
             this.bullet = bullet;
             this.boss = boss;
-            this.poos = poos;
         }
         // Utility method - Distance calculation between two points
         bulletBossCollision.prototype.distance = function (p1, p2) {
@@ -36,35 +34,16 @@ var managers;
             if (this.distance(p1, p2) < ((bullet.height / 2) + (boss.height / 2))) {
                 createjs.Sound.play("shot");
                 this.scoreboard.score += 50;
-                this.scoreboard.boss_hp -= 100;
+                this.scoreboard.currentBossHP -= 100;
+                constants.CURRENT_BOSS_HP -= 100;
                 //bullet.reset();
                 game.removeChild(bullet.image);
                 constants.IS_BULLET = false;
-            }
-        };
-        // check collision between bullet and cloud
-        bulletBossCollision.prototype.bulletAndPoo = function (poo, bullet) {
-            var p1 = new createjs.Point();
-            var p2 = new createjs.Point();
-            p1.x = bullet.image.x;
-            p1.y = bullet.image.y;
-            p2.x = poo.image.x;
-            p2.y = poo.image.y;
-            if (this.distance(p1, p2) < ((bullet.height / 2) + (poo.height / 2))) {
-                createjs.Sound.play("shot");
-                this.scoreboard.score += 50;
-                //bullet.reset();
-                game.removeChild(bullet.image);
-                constants.IS_BULLET = false;
-                poo.reset();
             }
         };
         // Utility Function to Check Collisions
         bulletBossCollision.prototype.update = function () {
             this.bulletAndBoss(this.boss, this.bullet);
-            for (var i = constants.POO_NUM; i >= 0; i--) {
-                this.bulletAndPoo(this.poos[i], this.bullet);
-            }
         };
         return bulletBossCollision;
     })();

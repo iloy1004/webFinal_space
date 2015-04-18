@@ -11,24 +11,32 @@ var objects;
             this.lives = constants.CURRENT_PLANE_LIVES;
             this.score = 0;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.scoreLabel = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
             this.update();
             // drawing hp
             this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
+            this.sqaureGas.x = 250;
+            this.sqaureGas.y = 100;
             this.livesImg = new createjs.Sprite(managers.Assets.atlas_all, "lifes");
-            this.livesImg.x = 380;
-            this.livesImg.y = 35;
+            this.livesImg.x = 330;
+            this.livesImg.y = 30;
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
             game.addChild(this.livesImg);
             game.addChild(this.sqaureGas);
             game.addChild(this.label);
+            game.addChild(this.scoreLabel);
         }
         Scoreboard.prototype.update = function () {
             this.gas = constants.CURRENT_PLANE_GAS;
             this.gas -= 0.05;
-            this.labelText = "* HP:          * Lives   : " + this.lives.toString() + "  * Score: " + this.score.toString();
+            this.labelText = " Gas:          Lives   : " + this.lives.toString();
             this.label.text = this.labelText;
-            this.label.y = 20;
+            this.label.y = 10;
+            this.labelText = " Score: " + this.score.toString();
+            this.scoreLabel.text = this.labelText;
+            //this.scoreLabel.x = stage.canvas.width / 2 - 150;
+            this.scoreLabel.y = 480;
             this.drawHP(Math.floor(this.gas));
             constants.CURRENT_PLANE_GAS = Math.floor(this.gas);
             if (constants.CURRENT_PLANE_GAS == 0 && constants.CURRENT_PLANE_LIVES >= 1) {

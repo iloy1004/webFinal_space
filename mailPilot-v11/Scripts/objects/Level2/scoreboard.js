@@ -10,32 +10,39 @@ var objects;
             this.gas = constants.CURRENT_PLANE_GAS;
             this.lives = constants.CURRENT_PLANE_LIVES;
             this.bullets = constants.CURRENT_BULLETS;
-            this.score = 0;
+            this.score = constants.CURRENT_SCORE;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
+            this.ScoreLabel = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
             this.update();
             // drawing hp
             this.sqaureGas = new createjs.Sprite(managers.Assets.atlas_all, "gas100");
+            this.sqaureGas.x = 250;
+            this.sqaureGas.y = 100;
             this.livesImg = new createjs.Sprite(managers.Assets.atlas_all, "lifes");
-            this.livesImg.x = 380;
-            this.livesImg.y = 35;
+            this.livesImg.x = 330;
+            this.livesImg.y = 30;
             //bullet image
             this.bulletImg = new createjs.Sprite(managers.Assets.atlas_all, "bullets_counter");
-            this.bulletImg.x = 650;
-            this.bulletImg.y = 20;
+            this.bulletImg.x = 580;
+            this.bulletImg.y = 5;
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
             game.addChild(this.livesImg);
             game.addChild(this.sqaureGas);
             game.addChild(this.bulletImg);
             game.addChild(this.label);
+            game.addChild(this.ScoreLabel);
         }
         Scoreboard_L2.prototype.update = function () {
             this.gas = constants.CURRENT_PLANE_GAS;
             this.gas -= 0.05;
             this.bullets = constants.CURRENT_BULLETS;
-            this.labelText = "* HP:          * Lives   : " + this.lives.toString() + "  * Bullets    : " + this.bullets.toString() + "  * Score: " + this.score.toString();
+            this.labelText = " Gas:          Lives  : " + this.lives.toString() + "   Bullets   : " + this.bullets.toString();
             this.label.text = this.labelText;
-            this.label.y = 20;
+            this.label.y = 10;
+            this.labelText = " Score: " + this.score.toString();
+            this.ScoreLabel.text = this.labelText;
+            this.ScoreLabel.y = 480;
             this.drawHP(Math.floor(this.gas));
             constants.CURRENT_PLANE_GAS = Math.floor(this.gas);
             if (constants.CURRENT_PLANE_GAS == 0 && constants.CURRENT_PLANE_LIVES >= 1) {
